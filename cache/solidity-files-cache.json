@@ -1,0 +1,129 @@
+{
+  "_format": "hh-sol-cache-2",
+  "files": {
+    "/Users/joey/Desktop/PU/Matchbox/contracts/IGame.sol": {
+      "lastModificationDate": 1666834395644,
+      "contentHash": "d41d8cd98f00b204e9800998ecf8427e",
+      "sourceName": "contracts/IGame.sol",
+      "solcConfig": {
+        "version": "0.8.1",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [],
+      "artifacts": []
+    },
+    "/Users/joey/Desktop/PU/Matchbox/contracts/IGameMetaData.sol": {
+      "lastModificationDate": 1666834402050,
+      "contentHash": "d41d8cd98f00b204e9800998ecf8427e",
+      "sourceName": "contracts/IGameMetaData.sol",
+      "solcConfig": {
+        "version": "0.8.1",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [],
+      "artifacts": []
+    },
+    "/Users/joey/Desktop/PU/Matchbox/contracts/Matchbox.sol": {
+      "lastModificationDate": 1666834413134,
+      "contentHash": "d41d8cd98f00b204e9800998ecf8427e",
+      "sourceName": "contracts/Matchbox.sol",
+      "solcConfig": {
+        "version": "0.8.1",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [],
+      "artifacts": []
+    },
+    "/Users/joey/Desktop/PU/Matchbox/contracts/MatchboxGame.sol": {
+      "lastModificationDate": 1666834428647,
+      "contentHash": "d41d8cd98f00b204e9800998ecf8427e",
+      "sourceName": "contracts/MatchboxGame.sol",
+      "solcConfig": {
+        "version": "0.8.1",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [],
+      "artifacts": []
+    }
+  }
+}
