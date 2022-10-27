@@ -1,5 +1,8 @@
 # Matchbox
+
+<p align="center">
 Matchbox X FD 
+</p>
 
 ### In a .env folder inititalize: 
 
@@ -9,7 +12,7 @@ PRIVATE_KEY = "private key"
 PUBLIC_KEY = "public key"
 ```
 
-# How to Run 
+### How to Run 
 
 1. Deployment: 
 ``` sh
@@ -17,7 +20,6 @@ npx hardhat --network goerli run scripts/deploy.js
 ```
 
 2. Testing: 
-
 ```sh
 npx hardhat test
 ```
