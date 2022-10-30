@@ -1,3 +1,89 @@
+// SPDX-License-Identifier: SEE LICENSE IN LICENSE
+pragma solidity 0.8.17;
+//import ownable from openzeppelin
+import "@openzeppelin/contracts/access/Ownable.sol";
+import "@openzeppelin/contracts/access/Access.sol";
+import "@openzeppelin/contracts/utils/Counters.sol";
+
+interface IGame is Ownable {
+    using Counters for Counters.Counter;
+    Counters.Counter private _playerId;
+
+    struct Player {
+        uint256 id;
+        address addr;
+        uint256 amount;
+    }
+
+    // would have a mapping of address -> players
+
+    // example modifiers for when we implement games: 
+
+    // modifier for onlyOwner
+    // modifier onlyOwner() {
+    //     require(msg.sender == owner, "Only owner can call this function.");
+    //     _;
+    // }
+
+    // modifier for game started 
+    // modifier gameStarted() {
+    //     require(gameStarted, "Game has not started yet.");
+    //     _;
+    // }
+
+    // modifier for game ended
+    // modifier gameEnded() {
+    //     require(gameEnded, "Game has not ended yet.");
+    //     _;
+    // }
+
+    // modifier for is player
+    // modifier isPlayer() {
+    //     require(players[msg.sender].addr != address(0), "You are not a player.");
+    //     _;
+    // }
+
+    // modifier for is not player
+    // modifier isNotPlayer() {
+    //     require(players[msg.sender].addr == address(0), "You are already a player.");
+    //     _;
+    // }
+
+    // Events specific for game
+    event GameCreated(uint256 indexed id, address indexed owner, uint256 fee, bool status);
+    event GameUpdated(uint256 indexed id, address indexed owner, uint256 fee, bool status);
+    event GameFinished(uint256 indexed id, address indexed owner, uint256 fee, bool status);
+    event GameResult(uint256 indexed id, address indexed addr, uint256 amount, uint256 winAmount, uint256 loseAmount);
+
+    // Events for players
+    event PlayerJoined(uint256 indexed id, address indexed addr);
+    event PlayerLeft(uint256 indexed id, address indexed addr);
+    event PlayerWithdraw(uint256 indexed id, address indexed addr);
+    
+    // functions for game
+    function getTotalPlayers() external view returns (uint256);
+
+    // player specific 
+    function getPlayerId(address addr) external view returns (uint256);
+    function getPlayer(uint256 id) external view returns (Player memory);
+    function startGame() external view returns (uint256);
+    function endGame() external view returns (uint256);
+    
+    // specific functions for players
+    function joinGame() external payable returns (bool);
+    function leaveGame() external returns (bool);
+    function withdraw(Player player) external returns (bool);
+
+    // implement game owner
+    function getOwner() external view returns (address);
+    function getWinner() external view returns (address);
+    function payWinner() external view returns (address);
+
+    function getAmount(address addr) external view returns (uint256);
+
+}
+
+
 interface IERC20 {
     /**
      * @dev Returns the amount of tokens in existence.
@@ -67,33 +153,4 @@ interface IERC20 {
      * a call to {approve}. `value` is the new allowance.
      */
     event Approval(address indexed owner, address indexed spender, uint256 value);
-}
-
-interface IGame {
-
-    // implement game logic
-    function play(address player, uint256 amount) external;
-    function withdraw(address player, uint256 amount) external;
-
-    // implement game info
-    function getGameInfo() external view returns (uint256, uint256, uint256, uint256, uint256);
-    function getGameInfoByAddress(address player) external view returns (uint256, uint256, uint256, uint256, uint256);
-
-    // implement game owner
-    function getOwner() external view returns (address);
-    function transferOwnership(address newOwner) external;
-
-    // implement game admin
-    function getAdmin() external view returns (address);
-    function transferAdmin(address newAdmin) external;
-
-    // implement game fee
-    function getFee() external view returns (uint256);
-    function setFee(uint256 newFee) external;
-
-    // implement game status
-    function getStatus() external view returns (bool);
-    function setStatus(bool newStatus) external;
-
-
 }
