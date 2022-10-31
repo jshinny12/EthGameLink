@@ -19,3 +19,6 @@ interface IPayoutGame is IGame, Ownable {
     // they can override if they dont like it
     function ownerWithdraw() isOwner external returns (bool);
 }
+
+//I DO NOT LOVE INTERFACES INHERTING INTERFACES --- VERY NON STANDARD. PLEASE THINK ABOUT USING ABSTRACT CONTRACTS https://dev.to/jamiescript/abstract-contract-and-interfaces-in-solidity-20cb
+//OR... IF YOU HAVE A GOOD INDUSTRY EXAMPLE OF INTERFACE INHERTENCE, LMK... I AM JUST NOT AWARE OF ONE
