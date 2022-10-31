@@ -3,38 +3,34 @@ pragma solidity ^0.8.0;
 
 interface IGame {
 
-    // structs
-    struct Player {
-        uint256 id;
-        address addr;
-        uint256 amount;
-    }
-    enum PlayState { STARTPENDING, ACTIVE, PAUSED, FINISHED }
-
     // Events specific for game
-    event GameCreated(uint256 fee, bool status);
-    event GameStarted(uint256 fee, bool status);
-    event GameFinished(uint256 fee, bool status);
-    event GamePaused(uint256 fee, bool status);
-    event GameUnpaused(uint256 fee, bool status);
+    event GameCreated();
+    event GameStarted();
+    event GameFinished();
 
     // Events for players
-    event PlayerJoined(uint256 indexed id, address indexed addr);
-    event PlayerLeft(uint256 indexed id, address indexed addr);
+    event PlayerJoined(address indexed addr);
+    //event PlayerLeft(address indexed addr); not sure if this is critical
 
     // functions for game
+    function getTotalPlaces external view returns (uint8);
+    function getTotalPlayers() external view returns (uint32); // i think games wont have 2^256 ppl
+        
     function startGame() external returns (bool);
-    function getPlayState() external returns (PlayState);
-    function getTotalPlayers() external view returns (uint256);
-    function getWinners() external view returns (address[] memory);
+    function endGame() external returns (bool);
 
-    // player specific 
-    function getPlayerId(address addr) external view returns (uint256);
-    function getPlayer(uint256 id) external view returns (Player memory);
+    function getPlayerAtPlace(uint8 place) external view returns (address account);
+    function getPlaceAtPlayer(address account) external view returns (uint8 place);
+    
+    // function getWinners() external view returns (address[] memory); // i think this would me expensive to get an array
+    
 
     // specific functions for players
-    function joinGame() external payable returns (bool);
-    function leaveGame() external returns (bool);
+    function joinGame() external returns (bool); 
+    // function leaveGame() external returns (bool); not sure if this is critical
+    
+    // specific functions for creator
+    function setWinner(uint8 place, address player) external returns (bool);
 }
 
 
