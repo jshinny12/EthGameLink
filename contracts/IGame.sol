@@ -3,12 +3,12 @@ pragma solidity ^0.8.0;
 
 interface IGame {
     // Events specific for game
-    event GameCreated(uint256 fee, bool status);
-    event GameStarted(uint256 fee, bool status);
-    event GameFinished(uint256 fee, bool status);
+    event GameCreated(bool status);
+    event GameStarted(bool status);
+    event GameFinished(bool status);
 
     // Events for players
-    event PlayerJoined(uint256 indexed id, address indexed addr);
+    event PlayerJoined(address indexed addr);
 
     // functions for game
     function startGame() external returns (bool);
