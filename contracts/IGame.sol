@@ -20,6 +20,7 @@ interface IGame {
     // player specific 
     function getPlayerAtPlace(uint32 place) external view returns (address account);
     function getPlaceAtPlayer(address account) external view returns (uint32 place);
+    function isAPlayer(address account) external view returns (bool);
 
     // specific functions for players
     function joinGame() external payable returns (bool);
