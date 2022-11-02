@@ -3,7 +3,6 @@ pragma solidity ^0.8.0;
 
 interface IGame {
     // Events specific for game
-
     event GameCreated(bool status);
     event GameStarted(bool status);
     event GameFinished(bool status);
