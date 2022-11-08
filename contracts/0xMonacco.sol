@@ -1,4 +1,4 @@
-contract Matchbox {
+contract 0xMonacco {
 
     // game struct that stores game info
     struct Game {
