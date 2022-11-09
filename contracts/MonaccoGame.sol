@@ -33,9 +33,11 @@ contract MonaccoGame is IGame, Ownable {
     function getTotalPlayers() external view returns (uint32) {
         return 0;
     }
+
     function hasStart() external view returns (bool) {
         return false;
     }
+
     function hasFinished() external view returns (bool) {
         return false;
     }
@@ -43,12 +45,16 @@ contract MonaccoGame is IGame, Ownable {
     function getWinner() external view returns (address account) {
         return address(0);
     }
+
     function isPlayer(address account) external view returns (bool) {
         return false;
     }
+    
     function joinGame() external payable returns (bool) {
         return false;
     }
+
+    //set winners
 
 
 
