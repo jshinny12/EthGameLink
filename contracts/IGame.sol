@@ -18,5 +18,4 @@ interface IGame {
     // player specific 
     function getWinner() external view returns (address account);
     function isPlayer(address account) external view returns (bool);
-    function joinGame() external payable returns (bool);
 }
