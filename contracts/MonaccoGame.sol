@@ -8,6 +8,7 @@ import "@openzeppelin/contracts/utils/Counters.sol";
 import "./IGame.sol";
 
 contract Race is IGame, Ownable {
+
     struct Player {
         string name;
         uint coins;
@@ -43,13 +44,9 @@ contract Race is IGame, Ownable {
 
     }
 
-    function makePlayer(string memory name, uint coins) private returns(Player memory){
-        Player memory p;
-        p.name = name;
-        p.coins = coins;
-        p.distance = 0;
-        p.isPlayer = true;
-        return p;
+    //make player funciton 
+    function makePlayer(string memory name, uint coins) private pure returns(Player memory) {
+        return Player(name, coins, 0, true);
     }
 
     modifier gameHasNotBegun() {
@@ -68,7 +65,7 @@ contract Race is IGame, Ownable {
 
     function _isPlayer(address account) private view returns (bool) {
         Player memory p = players[account];
-        return p.isPlayer;
+        return p != 0 && p.isPlayer;
     }
 
     function isPlayer(address account) external view returns (bool){
@@ -85,9 +82,8 @@ contract Race is IGame, Ownable {
 
         p.coins = coins;
         p.distance = distance;
-
+        
         Player memory currWinner = players[currWinnerAddr];
-
         if(p.distance > currWinner.distance) {
             currWinnerAddr = addr;
         }
@@ -99,7 +95,7 @@ contract Race is IGame, Ownable {
     }
 
     function end() public onlyOwner gameBegun{
-        gameState = State(1);
+        gameState = State(2);
         emit GameStarted();
     }
 
@@ -108,7 +104,7 @@ contract Race is IGame, Ownable {
     }
 
     function hasFinished() external view returns (bool){
-        return gameState == State(1);
+        return gameState == State(2);
     }
 
     // functions for game
@@ -117,12 +113,8 @@ contract Race is IGame, Ownable {
     }
 
     // player specific 
-    function getWinner() external view returns (address account) {
-        if (gameState == State(2)) {
-            return currWinnerAddr;
-        } else {
-            return address(0);    
-        }
+    function getWinner() external view returns (address account) onlyOwner gameFinished { 
+        return currWinnerAddr;
     }
 }
 
