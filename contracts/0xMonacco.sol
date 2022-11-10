@@ -3,17 +3,12 @@ pragma solidity ^0.8.0;
 
 //import ownable
 import "@openzeppelin/contracts/access/Ownable.sol";
-// import counter
-import "@openzeppelin/contracts/utils/Counters.sol";
 
 //import monnaccogame
 import "./Race.sol";
 
 
 contract 0xMonacco is Ownable {
-    
-    using Counters for Counters.Counter;
-    Counters.Counter private _raceIds;
 
     // event for game addition
     event RaceAdded(address indexed raceAddress, uint256 indexed raceId);
@@ -21,13 +16,6 @@ contract 0xMonacco is Ownable {
     event RaceRemoved(address indexed raceAddress, uint256 indexed raceId);
     //event for game
     event RaceUpdated(address indexed raceAddress, uint256 indexed raceId);
-
-    struct Player {
-        string name;
-        uint coins;
-        uint distance;
-        bool isPlayer;
-    }
 
     //mapping of game id -> game 
     mapping(uint256 => Race) races;
@@ -109,16 +97,12 @@ contract 0xMonacco is Ownable {
             name3,
             initCoins
         );
-        //increment game id
-        _raceIds.increment();
-        //get game id
-        uint256 raceId = _raceIds.current();
         //add game to mapping
-        races[raceId] = newRace;
+        races[_raceId] = newRace;
         //increment total games
         totalRaces++;
         //emit event
-        emit RaceAdded(raceAddress, raceId);
+        emit RaceAdded(raceAddress, _raceId);
     }
 
     // function for updating game
