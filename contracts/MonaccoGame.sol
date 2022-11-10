@@ -11,9 +11,9 @@ contract MonaccoGame is IGame, Ownable {
     using Counters for Counters.Counter;
     Counters.Counter private _playerIds;
     
-    event GameCreated(bool status);
-    event GameStarted(bool status);
-    event GameFinished(bool status);
+    event GameCreated();
+    event GameStarted();
+    event GameFinished();
     event PlayerJoined(address indexed addr);
     
     struct Player {
@@ -44,7 +44,7 @@ contract MonaccoGame is IGame, Ownable {
         addPlayer(player1, amount);
         addPlayer(player2, amount);
         addPlayer(player3, amount);
-        emit GameCreated(true);
+        emit GameCreated();
     }
 
     // modifier for player exists
@@ -89,14 +89,14 @@ contract MonaccoGame is IGame, Ownable {
     function startGame() external onlyOwner gameNotOngoing {
         start = block.timestamp;
         hasStarted = true;
-        emit GameStarted(true);
+        emit GameStarted();
     }
 
     // function for ending time
     function endGame() external onlyOwner gameOngoing {
         end = block.timestamp;
         hasFinished = true;
-        emit GameFinished(true);
+        emit GameFinished();
     }
 
     function isPlayer(address account) external view returns (bool) onlyOwner {
