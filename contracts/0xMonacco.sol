@@ -6,122 +6,125 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 // import counter
 import "@openzeppelin/contracts/utils/Counters.sol";
 
+//import monnaccogame
+import "./Race.sol";
+
+
 contract 0xMonacco is Ownable {
     
     using Counters for Counters.Counter;
-    Counters.Counter private _gameIds;
+    Counters.Counter private _raceIds;
 
     // event for game addition
-    event GameAdded(address indexed gameAddress, uint256 indexed gameId);
+    event RaceAdded(address indexed raceAddress, uint256 indexed raceId);
     //event for game removed
-    event GameRemoved(address indexed gameAddress, uint256 indexed gameId);
+    event RaceRemoved(address indexed raceAddress, uint256 indexed raceId);
     //event for game
-    event GameUpdated(address indexed gameAddress, uint256 indexed gameId);
+    event RaceUpdated(address indexed raceAddress, uint256 indexed raceId);
 
-    // struct for game
-
-    struct Game {
-        address gameAddress;
-        bool hasStarted;
-        bool hasEnded;
-        address[] players;
-        address winner;
-        uint256 totalAmount;
+    struct Player {
+        string name;
+        uint coins;
+        uint distance;
+        bool isPlayer;
     }
 
-    modifier gameExists(uint256 gameId) {
+    //mapping of game id -> game 
+    mapping(uint256 => Race) races;
+    // total number of games 
+    uint256 totalRaces;
+
+    modifier raceExists(uint256 raceId) {
         require(
-            games[gameId].gameAddress != address(0),
+            races[raceId].raceAddress != address(0),
             "Game does not exist"
         );
         _;
     }
 
-    //modifier game does not exist
-    modifier gameDoesNotExist(uint256 gameId) {
+    //modifier race does not exist ()
+    modifier raceDoesNotExist(uint256 raceId) {
         require(
-            games[gameId].gameAddress == address(0),
-            "Game already exists"
+            races[raceId].raceAddress == address(0),
+            "Game does not exist"
         );
         _;
     }
 
     //modifier game has started
-    modifier gameHasStarted(uint256 gameId) {
+    modifier raceOngoing(uint256 raceId) {
         require(
-            games[gameId].hasStarted == true,
+            races[raceId].hasOngoing(),
             "Game has not started yet"
         );
         _;
     }
 
-    //modifier game has not started yet
-    modifier gameHasNotStarted(uint256 gameId) {
+    //modifier game has started
+    modifier raceHasNotStarted(uint256 raceId) {
         require(
-            games[gameId].hasStarted == false,
-            "Game has already started"
+            races[raceId].hasNotStart(),
+            "Game has not started yet"
         );
         _;
     }
 
-    //modifier game has ended
-    modifier gameHasEnded(uint256 gameId) {
+    modifier raceHasEnded(uint256 raceId) {
         require(
-            games[gameId].hasEnded == true,
-            "Game has not ended yet"
+            races[raceId].hasFinished(),
+            "Game has not started yet"
         );
         _;
-    }
-
-    //modifier game has not ended yet
-    modifier gameHasNotEnded(uint256 gameId) {
-        require(
-            games[gameId].hasEnded == false,
-            "Game has already ended"
-        );
-        _;
-    }
-
-    //mapping of game id -> game 
-    mapping(uint256 => Game) games;
-    // total number of games 
-    uint256 totalGames;
-
-    //function for adding games
-    function addGame(address gameAddress) external onlyOwner gameDoesNotExist(_gameIds.current(), gameAddress, 
-    player1, player2, player3, totalAmount) {
-        //increment game id
-        _gameIds.increment();
-        //get current game id
-        uint256 gameId = _gameIds.current();
-        // create an array of three players 
-        address[] memory players = new address[](3);
-        //add players in the params to the array
-        players[0] = player1;
-        players[1] = player2;
-        players[2] = player3;
-        games[gameId] = Game(gameAddress, false, false, players, null, totalAmount);
-        //increment total games
-        totalGames++;
-        //emit event
-        emit GameAdded(gameAddress, gameId);
     }
 
     //function for removing games
-    function removeGame(uint256 gameId) external onlyOwner gameExists(gameId) {
+    function removeRace(uint256 raceId) external onlyOwner gameExists(gameId) {
         //delete game
-        delete games[gameId];
+        delete races[raceId];
         //decrement total games
-        totalGames--;
+        totalRaces--;
         //emit event
-        emit GameRemoved(gameAddress, gameId);
+        emit RaceRemoved(raceAddress, raceId);
     }
 
-    function setWinner(uint256 gameId, address player) onlyOwner {
-        racecontract.setwinnera.()
+    // function for adding games to the game list
+    function addRace(
+        string memory _raceId,
+        address addr1,
+        string memory name1,
+        address addr2,
+        string memory name2,
+        address addr3,
+        string memory name3,
+        uint initCoins
+    ) external onlyOwner raceDoesNotExist(_raceId) {
+        //create new game
+        Race newRace = new Race(
+            _raceId,
+            addr1,
+            name1,
+            addr2,
+            name2,
+            addr3,
+            name3,
+            initCoins
+        );
+        //increment game id
+        _raceIds.increment();
+        //get game id
+        uint256 raceId = _raceIds.current();
+        //add game to mapping
+        races[raceId] = newRace;
+        //increment total games
+        totalRaces++;
+        //emit event
+        emit RaceAdded(raceAddress, raceId);
     }
 
-
-
+    // function for updating game
+    function updateRacePlayer(uint256 raceId, uint256 playerAddress, uint256 coins, uint256 distance) onlyOwner raceExists(raceId) {
+        Race updatingRace = races[raceId];
+        Race.updatePlayer(playerAddress, coins, distance);
+    }
 
 }

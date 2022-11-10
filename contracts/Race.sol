@@ -20,15 +20,17 @@ contract Race is IGame, Ownable {
 
     enum State {
         BEFORE,
-        STARTED,
+        ONGOING,
         ENDED
     }
 
     State gameState;
     string raceId;
-
     address currWinnerAddr;
 
+    event GameCreated();
+    event GameStarted();
+    event GameFinished();
 
     constructor(string memory _raceId, address addr1, string memory name1, address addr2, string memory name2, address addr3, string memory name3, uint initCoins) {        
         raceId = _raceId;
@@ -99,8 +101,12 @@ contract Race is IGame, Ownable {
         emit GameStarted();
     }
 
-    function hasStart() external view returns (bool){
+    function hasNotStart() external view returns (bool){
         return gameState != State(0);
+    }
+
+    function hasOngoing() external view returns (bool){
+        return gameState == State(1);
     }
 
     function hasFinished() external view returns (bool){
@@ -116,5 +122,28 @@ contract Race is IGame, Ownable {
     function getWinner() external view returns (address account) onlyOwner gameFinished { 
         return currWinnerAddr;
     }
+
+    function getRaceId() external view returns (race id) {
+        return raceId;
+    }
+
+    //function for getting a player
+    function getPlayerName(uint256 playerId) external view returns (address account, string memory name, uint coins, uint distance) {
+        Player memory p = players[playerId];
+        return p.name;
+    }
+
+    // get a player's coins
+    function getPlayerCoins(uint256 playerId) external view returns (address account, string memory name, uint coins, uint distance) {
+        Player memory p = players[playerId];
+        return p.coins;
+    }
+
+    // get players distance
+    function getPlayerDistance(uint256 playerId) external view returns (address account, string memory name, uint coins, uint distance) {
+        Player memory p = players[playerId];
+        return p.distance;
+    }
+
 }
 
