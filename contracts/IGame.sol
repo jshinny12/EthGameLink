@@ -7,9 +7,6 @@ interface IGame {
     event GameStarted();
     event GameFinished();
 
-    // Events for players
-    event PlayerJoined(address indexed addr);
-
     // functions for game
     function getTotalPlayers() external view returns (uint32);
     function hasStart() external view returns (bool);
