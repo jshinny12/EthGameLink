@@ -39,9 +39,6 @@ contract Race is IGame, Ownable {
 
         gameState = State(0);
 
-        emit PlayerJoined(addr1);
-        emit PlayerJoined(addr2);
-        emit PlayerJoined(addr3);
         emit GameCreated();
 
     }
