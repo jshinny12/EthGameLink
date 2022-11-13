@@ -101,7 +101,7 @@ contract Race is IGame, Ownable {
         emit GameFinished();
     }
 
-    function hasNotStart() external view returns (bool){
+    function hasNotStarted() external view returns (bool){
         return gameState != State(0);
     }
 
