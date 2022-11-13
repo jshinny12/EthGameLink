@@ -8,7 +8,7 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 import "./Race.sol";
 
 
-contract Monaco is Ownable {
+contract MonacoResults is Ownable {
 
     // event for game addition
     event RaceAdded(address indexed raceAddress, uint256 indexed raceId);
@@ -66,13 +66,13 @@ contract Monaco is Ownable {
     }
 
     //function for removing games
-    function removeRace(uint256 raceId) external onlyOwner raceExists(raceId) {
+    function removeRace(uint256 _raceId) external onlyOwner raceExists(_raceId) {
         //delete game
-        delete races[raceId];
+        delete races[_raceId];
         //decrement total games
         totalRaces--;
         //emit event
-        emit RaceRemoved(raceAddress, raceId);
+        emit RaceRemoved(races[_raceId].raceAddress, _raceId);
     }
 
     // function for adding games to the game list
@@ -102,12 +102,12 @@ contract Monaco is Ownable {
         //increment total games
         totalRaces++;
         //emit event
-        emit RaceAdded(raceAddress, _raceId);
+        emit RaceAdded(races[_raceId].raceAddress, _raceId);
     }
 
     // function for updating game
     function updateRacePlayer(uint256 raceId, uint256 playerAddress, uint256 coins, uint256 distance) public onlyOwner raceExists(raceId) {
-        Race memory updatingRace = races[raceId];
+        Race updatingRace = races[raceId];
         Race.updatePlayer(playerAddress, coins, distance);
     }
 

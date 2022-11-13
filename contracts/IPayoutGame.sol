@@ -4,7 +4,7 @@ pragma solidity ^0.8.0;
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "./IGame.sol";
 
-interface IPayoutGame is IGame, Ownable {
+interface IPayoutGame is IGame {
     event PlayerWithdraw(uint256 indexed id, address indexed addr);
     event OwnerWithdraw(uint256 indexed id, address indexed addr);
 
@@ -17,5 +17,5 @@ interface IPayoutGame is IGame, Ownable {
     // specific withdraw for owner. Should enforce so that 
     // owner can withdraw in edge cases, 
     // they can override if they dont like it
-    function ownerWithdraw() isOwner external returns (bool);
+    function ownerWithdraw() external returns (bool);
 }
