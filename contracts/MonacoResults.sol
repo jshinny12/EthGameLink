@@ -24,7 +24,7 @@ contract MonacoResults is Ownable {
 
     modifier raceExists(uint256 raceId) {
         require(
-            races[raceId].raceAddress != address(0),
+            address(races[raceId]) != address(0),
             "Race does not exist"
         );
         _;
@@ -33,7 +33,7 @@ contract MonacoResults is Ownable {
     //modifier race does not exist ()
     modifier raceDoesNotExist(uint256 raceId) {
         require(
-            races[raceId].raceAddress == address(0),
+            address(races[raceId]) == address(0),
             "Race already exists"
         );
         _;
@@ -72,12 +72,12 @@ contract MonacoResults is Ownable {
         //decrement total games
         totalRaces--;
         //emit event
-        emit RaceRemoved(races[_raceId].raceAddress, _raceId);
+        emit RaceRemoved(address(races[_raceId]), _raceId);
     }
 
     // function for adding games to the game list
     function addRace(
-        string memory _raceId,
+        uint256 _raceId,
         address addr1,
         string memory name1,
         address addr2,
@@ -102,13 +102,13 @@ contract MonacoResults is Ownable {
         //increment total games
         totalRaces++;
         //emit event
-        emit RaceAdded(races[_raceId].raceAddress, _raceId);
+        emit RaceAdded(address(races[_raceId]), _raceId);
     }
 
     // function for updating game
-    function updateRacePlayer(uint256 raceId, uint256 playerAddress, uint256 coins, uint256 distance) public onlyOwner raceExists(raceId) {
+    function updateRacePlayer(uint256 raceId, address playerAddress, uint256 coins, uint256 distance) public onlyOwner raceExists(raceId) {
         Race updatingRace = races[raceId];
-        Race.updatePlayer(playerAddress, coins, distance);
+        updatingRace.updatePlayer(playerAddress, coins, distance);
     }
 
 }
