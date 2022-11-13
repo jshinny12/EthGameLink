@@ -28,10 +28,6 @@ contract Race is IGame, Ownable {
     string raceId;
     address currWinnerAddr;
 
-    event GameCreated();
-    event GameStarted();
-    event GameFinished();
-
     constructor(string memory _raceId, address addr1, string memory name1, address addr2, string memory name2, address addr3, string memory name3, uint initCoins) {        
         raceId = _raceId;
         players[addr1] = makePlayer(name1, initCoins);
@@ -65,18 +61,13 @@ contract Race is IGame, Ownable {
         _;
     }
 
-    function _isPlayer(address account) private view returns (bool) {
-        Player memory p = players[account];
-        return p.isPlayer && p != 0;
-    }
-
     function isPlayer(address account) external view returns (bool){
-        return _isPlayer(account);
+        Player memory p = players[account];
+        return p.isPlayer && (account != address(0));
     }
-
 
     function updatePlayer(address addr, uint coins, uint distance) public onlyOwner {
-        require(_isPlayer(addr));
+        require(this.isPlayer(addr));
 
         Player memory p = players[addr];
 
@@ -96,16 +87,16 @@ contract Race is IGame, Ownable {
         emit GameStarted();
     }
 
-    function end() public onlyOwner gameBegun{
+    function endGame() public onlyOwner gameBegun{
         gameState = State(2);
         emit GameFinished();
     }
 
-    function hasNotStarted() external view returns (bool){
+    function hasStarted() external view returns (bool){
         return gameState != State(0);
     }
 
-    function hasOngoing() external view returns (bool){
+    function isOngoing() external view returns (bool){
         return gameState == State(1);
     }
 
@@ -119,28 +110,28 @@ contract Race is IGame, Ownable {
     }
 
     // player specific 
-    function getWinner() external view returns (address account) onlyOwner gameFinished { 
+    function getWinner() external view gameFinished returns (address account) { 
         return currWinnerAddr;
     }
 
-    function getRaceId() external view returns (race id) {
+    function getRaceId() external view returns (string memory id) {
         return raceId;
     }
 
     //function for getting a player
-    function getPlayerName(uint256 playerId) external view returns (address account, string memory name, uint coins, uint distance) {
+    function getPlayerName(address playerId) external view returns (string memory name) {
         Player memory p = players[playerId];
         return p.name;
     }
 
     // get a player's coins
-    function getPlayerCoins(uint256 playerId) external view returns (address account, string memory name, uint coins, uint distance) {
+    function getPlayerCoins(address playerId) external view returns (uint coins) {
         Player memory p = players[playerId];
         return p.coins;
     }
 
     // get players distance
-    function getPlayerDistance(uint256 playerId) external view returns (address account, string memory name, uint coins, uint distance) {
+    function getPlayerDistance(address playerId) external view returns (uint distance) {
         Player memory p = players[playerId];
         return p.distance;
     }

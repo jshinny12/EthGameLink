@@ -9,7 +9,7 @@ interface IGame {
 
     // functions for game
     function getTotalPlayers() external view returns (uint32);
-    function hasStart() external view returns (bool);
+    function hasStarted() external view returns (bool);
     function hasFinished() external view returns (bool);
 
     // player specific 
