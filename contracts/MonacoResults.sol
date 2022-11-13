@@ -11,62 +11,62 @@ import "./Race.sol";
 contract MonacoResults is Ownable {
 
     // event for game addition
-    event RaceAdded(address indexed raceAddress, uint256 indexed raceId);
+    event RaceAdded(address indexed raceAddress, string indexed raceId);
     //event for game removed
-    event RaceRemoved(address indexed raceAddress, uint256 indexed raceId);
+    event RaceRemoved(address indexed raceAddress, string indexed raceId);
     //event for game
-    event RaceUpdated(address indexed raceAddress, uint256 indexed raceId);
+    event RaceUpdated(address indexed raceAddress, string indexed raceId);
 
     //mapping of game id -> game 
-    mapping(uint256 => Race) races;
+    mapping(string => Race) races;
     // total number of games 
     uint256 totalRaces;
 
-    modifier raceExists(uint256 raceId) {
+    modifier raceExists(string memory _raceId) {
         require(
-            address(races[raceId]) != address(0),
+            address(races[_raceId]) != address(0),
             "Race does not exist"
         );
         _;
     }
 
     //modifier race does not exist ()
-    modifier raceDoesNotExist(uint256 raceId) {
+    modifier raceDoesNotExist(string memory _raceId) {
         require(
-            address(races[raceId]) == address(0),
+            address(races[_raceId]) == address(0),
             "Race already exists"
         );
         _;
     }
 
     //modifier game has started
-    modifier raceOngoing(uint256 raceId) {
+    modifier raceOngoing(string memory _raceId) {
         require(
-            races[raceId].isOngoing(),
+            races[_raceId].isOngoing(),
             "Race must be ongoing"
         );
         _;
     }
 
     //modifier game has started
-    modifier raceHasNotStarted(uint256 raceId) {
+    modifier raceHasNotStarted(string memory _raceId) {
         require(
-            races[raceId].isStartPending(),
+            races[_raceId].isStartPending(),
             "Race has not started yet"
         );
         _;
     }
 
-    modifier raceHasEnded(uint256 raceId) {
+    modifier raceHasEnded(string memory _raceId) {
         require(
-            races[raceId].isFinished(),
+            races[_raceId].isFinished(),
             "Race has already ended"
         );
         _;
     }
 
     //function for removing games
-    function removeRace(uint256 _raceId) external onlyOwner raceExists(_raceId) {
+    function removeRace(string memory _raceId) external onlyOwner raceExists(_raceId) {
         //delete game
         delete races[_raceId];
         //decrement total games
@@ -77,7 +77,7 @@ contract MonacoResults is Ownable {
 
     // function for adding games to the game list
     function addRace(
-        uint256 _raceId,
+        string memory _raceId,
         address addr1,
         string memory name1,
         address addr2,
@@ -106,8 +106,8 @@ contract MonacoResults is Ownable {
     }
 
     // function for updating game
-    function updateRacePlayer(uint256 raceId, address playerAddress, uint256 coins, uint256 distance) public onlyOwner raceExists(raceId) {
-        Race updatingRace = races[raceId];
+    function updateRacePlayer(string memory _raceId, address playerAddress, uint256 coins, uint256 distance) public onlyOwner raceExists(_raceId) {
+        Race updatingRace = races[_raceId];
         updatingRace.updatePlayer(playerAddress, coins, distance);
     }
 
