@@ -67,7 +67,7 @@ contract Race is IGame, Ownable {
 
     function _isPlayer(address account) private view returns (bool) {
         Player memory p = players[account];
-        return p != 0 && p.isPlayer;
+        return p.isPlayer && p != 0;
     }
 
     function isPlayer(address account) external view returns (bool){
