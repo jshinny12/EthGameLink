@@ -19,7 +19,7 @@ contract Race is IGame, Ownable {
     mapping(address => Player) public players;
 
     enum State {
-        BEFORE,
+        STARTPENDING,
         ONGOING,
         ENDED
     }
@@ -47,23 +47,51 @@ contract Race is IGame, Ownable {
         return Player(name, coins, 0, true);
     }
 
-    modifier gameHasNotBegun() {
+    // Modifiers regarding play stage
+    modifier startPending() {
         require(gameState == State(0));
         _;
     }
-    modifier gameBegun() {
+    modifier begun() {
         require(gameState == State(1));
         _;
     }
     
-    modifier gameFinished() {
+    modifier finished() {
         require(gameState == State(2));
         _;
     }
 
-    function isPlayer(address account) external view returns (bool){
-        Player memory p = players[account];
-        return p.isPlayer && (account != address(0));
+    // view functions regarding play stage
+    function isStartPending() external view returns (bool){
+        return gameState != State(0);
+    }
+
+    function isOngoing() external view returns (bool){
+        return gameState == State(1);
+    }
+
+    function isFinished() external view returns (bool){
+        return gameState == State(2);
+    }
+    
+    // functions for game
+    function startGame() public onlyOwner startPending {
+        gameState = State(1);
+        emit GameBegun();
+    }
+
+    function endGame() public onlyOwner begun{
+        gameState = State(2);
+        emit GameFinished();
+    }
+
+    function getTotalPlayers() external view returns (uint32){
+        return 3;
+    }
+    
+    function getRaceId() external view returns (string memory id) {
+        return raceId;
     }
 
     function updatePlayer(address addr, uint coins, uint distance) public onlyOwner {
@@ -82,55 +110,26 @@ contract Race is IGame, Ownable {
         }
     }
 
-    function startGame() public onlyOwner gameHasNotBegun{
-        gameState = State(1);
-        emit GameStarted();
-    }
-
-    function endGame() public onlyOwner gameBegun{
-        gameState = State(2);
-        emit GameFinished();
-    }
-
-    function hasStarted() external view returns (bool){
-        return gameState != State(0);
-    }
-
-    function isOngoing() external view returns (bool){
-        return gameState == State(1);
-    }
-
-    function hasFinished() external view returns (bool){
-        return gameState == State(2);
-    }
-
-    // functions for game
-    function getTotalPlayers() external view returns (uint32){
-        return 3;
-    }
-
     // player specific 
-    function getWinner() external view gameFinished returns (address account) { 
+    function isPlayer(address account) external view returns (bool){
+        Player memory p = players[account];
+        return p.isPlayer && (account != address(0));
+    }
+
+    function getWinner() external view finished returns (address account) { 
         return currWinnerAddr;
     }
 
-    function getRaceId() external view returns (string memory id) {
-        return raceId;
-    }
-
-    //function for getting a player
     function getPlayerName(address playerId) external view returns (string memory name) {
         Player memory p = players[playerId];
         return p.name;
     }
 
-    // get a player's coins
     function getPlayerCoins(address playerId) external view returns (uint coins) {
         Player memory p = players[playerId];
         return p.coins;
     }
 
-    // get players distance
     function getPlayerDistance(address playerId) external view returns (uint distance) {
         Player memory p = players[playerId];
         return p.distance;

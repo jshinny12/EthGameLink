@@ -25,7 +25,7 @@ contract Monaco is Ownable {
     modifier raceExists(uint256 raceId) {
         require(
             races[raceId].raceAddress != address(0),
-            "Game does not exist"
+            "Race does not exist"
         );
         _;
     }
@@ -34,7 +34,7 @@ contract Monaco is Ownable {
     modifier raceDoesNotExist(uint256 raceId) {
         require(
             races[raceId].raceAddress == address(0),
-            "Game does not exist"
+            "Race already exists"
         );
         _;
     }
@@ -42,8 +42,8 @@ contract Monaco is Ownable {
     //modifier game has started
     modifier raceOngoing(uint256 raceId) {
         require(
-            races[raceId].hasOngoing(),
-            "Game has not started yet"
+            races[raceId].isOngoing(),
+            "Race must be ongoing"
         );
         _;
     }
@@ -51,22 +51,22 @@ contract Monaco is Ownable {
     //modifier game has started
     modifier raceHasNotStarted(uint256 raceId) {
         require(
-            races[raceId].hasNotStart(),
-            "Game has not started yet"
+            races[raceId].isStartPending(),
+            "Race has not started yet"
         );
         _;
     }
 
     modifier raceHasEnded(uint256 raceId) {
         require(
-            races[raceId].hasFinished(),
-            "Game has not started yet"
+            races[raceId].isFinished(),
+            "Race has already ended"
         );
         _;
     }
 
     //function for removing games
-    function removeRace(uint256 raceId) external onlyOwner gameExists(gameId) {
+    function removeRace(uint256 raceId) external onlyOwner raceExists(raceId) {
         //delete game
         delete races[raceId];
         //decrement total games
