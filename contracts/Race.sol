@@ -53,7 +53,7 @@ contract Race is IGame, Ownable {
         require(gameState == State(0));
         _;
     }
-    modifier begun() {
+    modifier ongoing() {
         require(gameState == State(1));
         _;
     }
@@ -82,7 +82,7 @@ contract Race is IGame, Ownable {
         emit GameBegun();
     }
 
-    function endGame() public onlyOwner begun{
+    function endGame() public onlyOwner ongoing{
         gameState = State(2);
         emit GameFinished();
     }
@@ -95,7 +95,7 @@ contract Race is IGame, Ownable {
         return raceId;
     }
 
-    function updatePlayer(address addr, uint coins, uint distance) public onlyOwner {
+    function updatePlayer(address addr, uint coins, uint distance) public onlyOwner ongoing {
         require(this.isPlayer(addr));
 
         Player memory p = players[addr];
