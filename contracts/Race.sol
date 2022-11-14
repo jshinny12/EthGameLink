@@ -91,7 +91,7 @@ contract Race is IGame, Ownable {
         return 3;
     }
     
-    function getRaceId() external view returns (string memory id) {
+    function getRaceId() external view returns (string memory) {
         return raceId;
     }
 
@@ -117,21 +117,21 @@ contract Race is IGame, Ownable {
         return p.isPlayer && (account != address(0));
     }
 
-    function getWinner() external view finished returns (address account) { 
+    function getWinner() external view finished returns (address) { 
         return currWinnerAddr;
     }
 
-    function getPlayerName(address playerId) external view returns (string memory name) {
+    function getPlayerName(address playerId) external view returns (string memory) {
         Player memory p = players[playerId];
         return p.name;
     }
 
-    function getPlayerCoins(address playerId) external view returns (uint coins) {
+    function getPlayerCoins(address playerId) external view returns (uint) {
         Player memory p = players[playerId];
         return p.coins;
     }
 
-    function getPlayerDistance(address playerId) external view returns (uint distance) {
+    function getPlayerDistance(address playerId) external view returns (uint) {
         Player memory p = players[playerId];
         return p.distance;
     }
