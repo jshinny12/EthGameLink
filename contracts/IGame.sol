@@ -10,7 +10,7 @@ interface IGame {
     // functions for game
     function getTotalPlayers() external view returns (uint32);
     
-    function isStartPending() external view returns (bool);
+    function isPregame() external view returns (bool);
     function isOngoing() external view returns (bool);
     function isFinished() external view returns (bool);
 

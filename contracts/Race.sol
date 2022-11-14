@@ -20,7 +20,7 @@ contract Race is IGame, Ownable {
     mapping(address => Player) public players;
 
     enum State {
-        STARTPENDING,
+        PREGAME,
         ONGOING,
         ENDED
     }
@@ -49,7 +49,7 @@ contract Race is IGame, Ownable {
     }
 
     // Modifiers regarding play stage
-    modifier startPending() {
+    modifier pregame() {
         require(gameState == State(0));
         _;
     }
@@ -64,7 +64,7 @@ contract Race is IGame, Ownable {
     }
 
     // view functions regarding play stage
-    function isStartPending() external view returns (bool){
+    function isPregame() external view returns (bool){
         return gameState != State(0);
     }
 
@@ -77,7 +77,7 @@ contract Race is IGame, Ownable {
     }
     
     // functions for game
-    function startGame() public onlyOwner startPending {
+    function startGame() public onlyOwner pregame {
         gameState = State(1);
         emit GameBegun();
     }
