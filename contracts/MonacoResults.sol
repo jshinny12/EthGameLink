@@ -51,7 +51,7 @@ contract MonacoResults is Ownable {
     //modifier game has started
     modifier raceHasNotStarted(string memory _raceId) {
         require(
-            races[_raceId].isStartPending(),
+            races[_raceId].isPregame(),
             "Race has not started yet"
         );
         _;

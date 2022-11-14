@@ -64,15 +64,15 @@ contract Race is IGame, Ownable {
     }
 
     // view functions regarding play stage
-    function isPregame() external view returns (bool){
+    function isPregame() external view override returns (bool){
         return gameState != State(0);
     }
 
-    function isOngoing() external view returns (bool){
+    function isOngoing() external view override returns (bool){
         return gameState == State(1);
     }
 
-    function isFinished() external view returns (bool){
+    function isFinished() external view override returns (bool){
         return gameState == State(2);
     }
     
@@ -87,7 +87,7 @@ contract Race is IGame, Ownable {
         emit GameFinished();
     }
 
-    function getTotalPlayers() external view returns (uint32){
+    function getTotalPlayers() external view override returns (uint32){
         return 3;
     }
     
@@ -112,12 +112,12 @@ contract Race is IGame, Ownable {
     }
 
     // player specific 
-    function isPlayer(address account) external view returns (bool){
+    function isPlayer(address account) external view override returns (bool){
         Player memory p = players[account];
         return p.isPlayer && (account != address(0));
     }
 
-    function getWinner() external view finished returns (address) { 
+    function getWinner() external view override finished returns (address) { 
         return currWinnerAddr;
     }
 
