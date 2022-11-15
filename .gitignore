@@ -1,2 +1,3 @@
 .env
 .devcontainer/zsh_history
+node_modules/
