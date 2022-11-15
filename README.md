@@ -4,7 +4,7 @@
 Matchbox X FD 
 </p>
 
-### In a .env folder inititalize: 
+### In a .env folder inititalize:
 
 ```
 API_URL = "alchemy-api-url"
@@ -12,14 +12,28 @@ PRIVATE_KEY = "private key"
 PUBLIC_KEY = "public key"
 ```
 
-### How to Run 
+### Run the following npm commands:
 
-1. Deployment: 
-``` sh
+```
+npm install
+npm install @openzeppelin/contracts
+```
+
+### How to Run
+
+1. Deployment:
+
+```sh
 npx hardhat --network goerli run scripts/deploy.js
 ```
 
-2. Testing: 
+2. Testing:
+
 ```sh
 npx hardhat test
 ```
+
+### Docker and Dev Container for Echidna, Mythril, Slither
+
+1. Choose the correct FROM line in the Docker file
+2. Set the correct path for OPENZEP varaible in zshrc
