@@ -9,13 +9,12 @@ import "@openzeppelin/contracts/utils/Counters.sol";
 import "./IGame.sol";
 
 contract Race is IGame, Ownable {
-
     struct Player {
         string name;
-        uint coins;
-        uint distance;
+        uint256 coins;
+        uint256 distance;
         bool isPlayer;
-    } 
+    }
 
     mapping(address => Player) public players;
 
@@ -29,7 +28,16 @@ contract Race is IGame, Ownable {
     string raceId;
     address currWinnerAddr;
 
-    constructor(string memory _raceId, address addr1, string memory name1, address addr2, string memory name2, address addr3, string memory name3, uint initCoins) {        
+    constructor(
+        string memory _raceId,
+        address addr1,
+        string memory name1,
+        address addr2,
+        string memory name2,
+        address addr3,
+        string memory name3,
+        uint256 initCoins
+    ) {
         raceId = _raceId;
         players[addr1] = makePlayer(name1, initCoins);
         players[addr2] = makePlayer(name2, initCoins);
@@ -40,11 +48,14 @@ contract Race is IGame, Ownable {
         gameState = State(0);
 
         emit GameCreated();
-
     }
 
-    //make player funciton 
-    function makePlayer(string memory name, uint coins) private pure returns(Player memory) {
+    //make player funciton
+    function makePlayer(string memory name, uint256 coins)
+        private
+        pure
+        returns (Player memory)
+    {
         return Player(name, coins, 0, true);
     }
 
@@ -57,45 +68,49 @@ contract Race is IGame, Ownable {
         require(gameState == State(1));
         _;
     }
-    
+
     modifier finished() {
         require(gameState == State(2));
         _;
     }
 
     // view functions regarding play stage
-    function isPregame() external view override returns (bool){
+    function isPregame() external view override returns (bool) {
         return gameState == State(0);
     }
 
-    function isOngoing() external view override returns (bool){
+    function isOngoing() external view override returns (bool) {
         return gameState == State(1);
     }
 
-    function isFinished() external view override returns (bool){
+    function isFinished() external view override returns (bool) {
         return gameState == State(2);
     }
-    
+
     // functions for game
     function startGame() public onlyOwner pregame {
         gameState = State(1);
         emit GameBegun();
     }
 
-    function endGame() public onlyOwner ongoing{
+    function endGame() public onlyOwner ongoing {
         gameState = State(2);
         emit GameFinished();
     }
 
-    function getTotalPlayers() external view override returns (uint32){
+    function getTotalPlayers() external view override returns (uint32) {
         return 3;
     }
-    
+
     function getRaceId() external view returns (string memory) {
         return raceId;
     }
 
-    function updatePlayer(address addr, uint coins, uint distance) public onlyOwner ongoing {
+    function updatePlayer(
+        address addr,
+        uint256 coins,
+        uint256 distance
+    ) public onlyOwner ongoing {
         require(this.isPlayer(addr));
 
         Player memory p = players[addr];
@@ -104,37 +119,47 @@ contract Race is IGame, Ownable {
 
         p.coins = coins;
         p.distance = distance;
-        
+
         Player memory currWinner = players[currWinnerAddr];
-        if(p.distance > currWinner.distance) {
+        if (p.distance > currWinner.distance) {
             currWinnerAddr = addr;
         }
     }
 
-    // player specific 
-    function isPlayer(address account) external view override returns (bool){
+    // player specific
+    function isPlayer(address account) external view override returns (bool) {
         Player memory p = players[account];
         return p.isPlayer && (account != address(0));
     }
 
-    function getWinner() external view override finished returns (address) { 
+    function getWinner() external view override finished returns (address) {
         return currWinnerAddr;
     }
 
-    function getPlayerName(address playerAddr) external view returns (string memory) {
+    function getPlayerName(address playerAddr)
+        external
+        view
+        returns (string memory)
+    {
         Player memory p = players[playerAddr];
         return p.name;
     }
 
-    function getPlayerCoins(address playerAddr) external view returns (uint) {
+    function getPlayerCoins(address playerAddr)
+        external
+        view
+        returns (uint256)
+    {
         Player memory p = players[playerAddr];
         return p.coins;
     }
 
-    function getPlayerDistance(address playerAddr) external view returns (uint) {
+    function getPlayerDistance(address playerAddr)
+        external
+        view
+        returns (uint256)
+    {
         Player memory p = players[playerAddr];
         return p.distance;
     }
-
 }
-

@@ -1,4 +1,5 @@
 .env
-./node_modules
-./artifacts
-./cache
+artifacts/
+cache/
+devcontainer/zsh_history
+node_modules/
