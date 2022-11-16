@@ -1,0 +1,5 @@
+{
+    "remappings": [
+        "@openzeppelin/contracts/=/workspaces/Matchbox/node_modules/@openzeppelin/contracts/"
+    ]
+}
