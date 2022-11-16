@@ -193,7 +193,7 @@ async function getPlayerDistance(playerId) {
 }
 
 async function getPlayerName(playerId) {
-<<<<<<< HEAD
+
     return await race.getPlayerName(playerId)
 }
 
@@ -236,7 +236,7 @@ async function players() {
 
 async function renounceOwnership() {
     return await race.renounceOwnership()
-=======
+
   return await Race.getPlayerName(playerId);
 }
 
@@ -259,7 +259,6 @@ async function getBalance(address) {
 
 async function getPlayerDistance(playerId) {
   return await Race.getPlayerDistance(playerId);
->>>>>>> docker
 }
 
 async function startGame() {
