@@ -7,8 +7,12 @@ let owner;
 let player1; 
 let player2; 
 let player3;
+let signers;
+
+
 beforeEach(async function () {
-    this.signers = await ethers.getSigners();
+    signers = await ethers.getSigners();
+    console.log(signers)
     [owner, player1, player2, player3] = signerList;
     const Race = ethers.getContractFactory(0, player1.address, "Alice", player2.address, "Bob", player3.address, "Charlie", 15000, { gasLimit: 10000000 });
 
