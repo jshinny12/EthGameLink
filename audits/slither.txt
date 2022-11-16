@@ -1,0 +1,30 @@
+Slither audit results as of Nov 16. No bug detected. 
+
+Compilation warnings/errors on Race.sol:
+Warning: Function state mutability can be restricted to pure
+   --> Race.sol:101:5:
+    |
+101 |     function getTotalPlayers() external view override returns (uint32) {
+    |     ^ (Relevant source part starts here and spans across multiple lines).
+
+
+
+Race.constructor(string,address,string,address,string,address,string,uint256).addr1 (Race.sol#33) lacks a zero-check on :
+                - currWinnerAddr = addr1 (Race.sol#46)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#missing-zero-address-validation
+
+Context._msgData() (../node_modules/@openzeppelin/contracts/utils/Context.sol#21-23) is never used and should be removed
+Counters.current(Counters.Counter) (../node_modules/@openzeppelin/contracts/utils/Counters.sol#22-24) is never used and should be removed
+Counters.decrement(Counters.Counter) (../node_modules/@openzeppelin/contracts/utils/Counters.sol#32-38) is never used and should be removed
+Counters.increment(Counters.Counter) (../node_modules/@openzeppelin/contracts/utils/Counters.sol#26-30) is never used and should be removed
+Counters.reset(Counters.Counter) (../node_modules/@openzeppelin/contracts/utils/Counters.sol#40-42) is never used and should be removed
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#dead-code
+
+Pragma version^0.8.0 (../node_modules/@openzeppelin/contracts/access/Ownable.sol#4) allows old versions
+Pragma version^0.8.0 (../node_modules/@openzeppelin/contracts/utils/Context.sol#4) allows old versions
+Pragma version^0.8.0 (../node_modules/@openzeppelin/contracts/utils/Counters.sol#4) allows old versions
+Pragma version^0.8.0 (IGame.sol#2) allows old versions
+Pragma version^0.8.0 (Race.sol#2) allows old versions
+solc-0.8.0 is not recommended for deployment
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#incorrect-versions-of-solidity
+Race.sol analyzed (5 contracts with 81 detectors), 12 result(s) found

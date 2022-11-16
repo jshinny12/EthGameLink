@@ -1,0 +1,27 @@
+: 1668612742:0;ls
+: 1668612748:0;cd contracts
+: 1668612758:0;slither Race.sol --solc-remaps @openzeppelin/contracts/=$OPENZEP
+: 1668612819:0;solc-select --version
+: 1668612826:0;solc-select version--
+: 1668612904:0;solc --version
+: 1668615320:0;cd contracts
+: 1668615330:0;slither Race.sol --solc-remaps @openzeppelin/contracts/=$OPENZEP
+: 1668615348:0;cd ..
+: 1668615359:0;mkdir audits
+: 1668615363:0;cd audits
+: 1668615369:0;touch slither.txt
+: 1668615419:0;cd ../contracts
+: 1668615475:0;touch config.json
+: 1668615534:0;myth analyze Race.sol --solc-json config.json
+: 1668615556:0;pip install mythril
+: 1668615773:0;pip install mythril --use-deprecated=backtrack-on-build-failures
+: 1668615811:0;pip install mythril --use-deprecated=legacy-resolver
+: 1668615975:0;pip intsall . --user-feature=in-tree-build
+: 1668615988:0;pip install . --user-feature=in-tree-build
+: 1668616001:0;pip install . --use-feature=in-tree-build
+: 1668618058:0;cd contracts
+: 1668618118:0;myth analyze Race.sol --solc-json config.json
+: 1668620683:0;git status
+: 1668620691:0;git add .
+: 1668620702:0;git commit -m "Docker setup update"
+: 1668620706:0;git push origin docker
