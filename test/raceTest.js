@@ -237,6 +237,27 @@ async function renounceOwnership() {
     return await race.renounceOwnership()
 }
 
+async function getPlayerAddress(playerId) {
+  return await race.getPlayerAddress(playerId);
+}
+
+async function getPlayerCoins(playerId) {
+  return await race.getPlayerCoins(playerId);
+}
+
+async function isPlayer(address) {
+  return await race.isPlayer(address);
+}
+
+async function getBalance(address) {
+  var balance = (await ethers.provider.getBalance(address)) / 1e18;
+  return balance;
+}
+
+async function getPlayerDistance(playerId) {
+  return await race.getPlayerDistance(playerId);
+}
+
 async function startGame() {
     return await race.startGame()
 }
