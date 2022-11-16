@@ -119,6 +119,7 @@ contract Race is IGame, Ownable {
 
         p.coins = coins;
         p.distance = distance;
+        players[addr] = p;
 
         Player memory currWinner = players[currWinnerAddr];
         if (p.distance > currWinner.distance) {
