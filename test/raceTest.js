@@ -2,6 +2,7 @@ const { ethers } = require("hardhat");
 const { expect, assert, AssertionError} = require('chai');
 const web3 = require("web3");
 const { describe } = require("mocha");
+const { solidity } = require("ethereum-waffle");
 
 //before each test
 let raceOwner; 
@@ -31,7 +32,7 @@ describe("Startup test", function () {
     it("Should deploy with correct initial state", async function () {
         assert(await getTotalPlayers() == 3, "Total players should be 3");
         assert(await isPregame(), "Initializes game state to pregame");
-        assert(await isOngoing() == false, "Game is not Ongoing");
+        assert(!(await isOngoing()), "Game is not Ongoing");
         assert(await isFinished() == false, "Game is not Finished");
         assert(await getPlayerCoins(player1.address) == 15000, "Player1 has 15000 coins");
         assert(await getPlayerCoins(player2.address) == 15000, "Player2 has 15000 coins");
@@ -39,6 +40,25 @@ describe("Startup test", function () {
         assert(await getPlayerDistance(player1.address) == 0, "Player1 should have no distance");
         assert(await getPlayerDistance(player2.address) == 0, "Player2 should have no distance");
         assert(await getPlayerDistance(player3.address) == 0, "Player3 should have no distance");
+    });
+});
+
+describe("update player tests", function ()  {
+    it("basic update", async function() {
+        it("update contract" , async function() {
+            await race.connect(owner).startGame();
+            await race.connect(owner).updatePlayer(player1.address, 7000, 5, { gasLimit: 10000000 });
+            assert(await getPlayerCoins(player1.address) == 7000, "Player1 has 2000 coins");
+            assert(await getPlayerDistance(player1.address) == 5, "Player1 has 5 distance");
+            assert(await getPlayerCoins(player2.address) == 15000, "Player2 should not have changed");
+            assert(await getPlayerDistance(player2.address) == 0, "Player2 should not have changed");
+            assert(await getPlayerCoins(player3.address) == 15000, "Player3 should not have changed");
+            assert(await getPlayerDistance(player3.address) == 0, "Player3 should not have changed");
+        });
+    });
+
+    it("update contract reverted, before started" , async function() {
+        expect(race.connect(raceOwner).updatePlayer(player1.address, 7000, 5, { gasLimit: 10000000 })).to.be.reverted();
     });
 });
 
