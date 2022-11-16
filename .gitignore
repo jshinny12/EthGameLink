@@ -2,3 +2,5 @@
 ./node_modules
 ./artifacts
 ./cache
+.devcontainer/zsh_history
+node_modules/
