@@ -58,7 +58,7 @@ describe("update player tests", function ()  {
     });
 
     it("update contract reverted, before started" , async function() {
-        expect(race.connect(raceOwner).updatePlayer(player1.address, 7000, 5, { gasLimit: 10000000 })).to.be.reverted();
+        await expect(race.connect(raceOwner).updatePlayer(player1.address, 7000, 5, { gasLimit: 10000000 })).to.be.reverted();
     });
 });
 
