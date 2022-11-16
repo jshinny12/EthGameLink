@@ -234,7 +234,7 @@ async function players() {
 }
 
 async function renounceOwnership() {
-    return await race.renounceOwnership()
+    return await race.renounceOwnership();
 }
 
 async function getPlayerAddress(playerId) {
