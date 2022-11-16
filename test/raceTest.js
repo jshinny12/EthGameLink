@@ -121,7 +121,7 @@ describe("getWinner test", function() {
     it("finish get winner default" , async function() {
         await race.connect(raceOwner).startGame();
         await race.connect(raceOwner).endGame();
-        assert(await race.getWinner() == player1.address, "default winner is player1");
+        assert(await getWinner() == player1.address, "default winner is player1");
         assert(await getPlayerCoins(player1.address) == 15000, "Player1 has 15000 coins");
         assert(await getPlayerDistance(player1.address) == 0, "Player1 has 0 distance");
     });
@@ -133,7 +133,7 @@ describe("getWinner test", function() {
         await race.connect(raceOwner).updatePlayer(player3.address, 2000, 14, { gasLimit: 10000000 });
         await race.connect(raceOwner).endGame();
 
-        assert(await race.getWinner() == player3.address, "player3 largest distance");
+        assert(await getWinner() == player3.address, "player3 largest distance");
         assert(await getPlayerCoins(player1.address) == 7000, "Player1 has 7000 coins");
         assert(await getPlayerDistance(player1.address) == 5, "Player1 has 5 distance");
         assert(await getPlayerCoins(player2.address) == 5000, "Player2 has 5000 coins");
