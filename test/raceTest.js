@@ -1,5 +1,5 @@
 const { ethers } = require("hardhat");
-const { expect, assert, AssertionError } = require("chai");
+const { expect, assert, AssertionError} = require('chai');
 const web3 = require("web3");
 const { describe } = require("mocha");
 const { solidity } = require("ethereum-waffle");
@@ -235,28 +235,6 @@ async function players() {
 
 async function renounceOwnership() {
     return await race.renounceOwnership()
-  return await Race.getPlayerName(playerId);
-}
-
-async function getPlayerAddress(playerId) {
-  return await Race.getPlayerAddress(playerId);
-}
-
-async function getPlayerCoins(playerId) {
-  return await Race.getPlayerCoins(playerId);
-}
-
-async function isPlayer(address) {
-  return await race.isPlayer(address);
-}
-
-async function getBalance(address) {
-  var balance = (await ethers.provider.getBalance(address)) / 1e18;
-  return balance;
-}
-
-async function getPlayerDistance(playerId) {
-  return await Race.getPlayerDistance(playerId);
 }
 
 async function startGame() {
