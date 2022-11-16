@@ -8,6 +8,8 @@ pragma solidity ^0.8.0;
  * meaning that it should be possible to implment a wide range
  * of game contracts, with different rules and logic
  * 
+ * Implementation: Reccomend using state variables to keep track of the game state
+ * 
  */
 
 interface IGame {
