@@ -13,14 +13,13 @@ let race;
 
 beforeEach(async function () {
     [raceOwner, player1, player2, player3] = await ethers.getSigners();
-    // console.log([raceOwner, player1, player2, player3])
     const race_fact = await ethers.getContractFactory("Race");
     race = await race_fact.deploy(0, player1.address, "Alice", player2.address, "Bob", player3.address, "Charlie", 15000, { gasLimit: 10000000 });
 });
 
 describe("Startup test", function () {
-    it("Should deploy contract", async function () {
-        assert(await getTotalPlayers() == 3, "Total players should be 3");
+    it("Should deploy contract with correct variables", async function () {
+        assert(await getRaceId() == 0, "Race id should be 0");
         assert(await owner() == raceOwner.address, "Owner is raceOwner");
         assert(await isPlayer(player1.address), "Player1 is player 1");
         assert(await isPlayer(player2.address), "Player2 is player 2");
@@ -28,39 +27,23 @@ describe("Startup test", function () {
         assert(await getPlayerName(player1.address) == "Alice", "Player1 is Alice");
         assert(await getPlayerName(player2.address) == "Bob", "Player2 is Bob");
         assert(await getPlayerName(player3.address) == "Charlie", "Player3 is Charlie");
+    });
+    it("Should deploy with correct initial state", async function () {
+        assert(await getTotalPlayers() == 3, "Total players should be 3");
+        assert(await isPregame(), "Initializes game state to pregame");
+        assert(await isOngoing() == false, "Game is not Ongoing");
+        assert(await isFinished() == false, "Game is not Finished");
         assert(await getPlayerCoins(player1.address) == 15000, "Player1 has 15000 coins");
         assert(await getPlayerCoins(player2.address) == 15000, "Player2 has 15000 coins");
         assert(await getPlayerCoins(player3.address) == 15000, "Player3 has 15000 coins");
         assert(await getPlayerDistance(player1.address) == 0, "Player1 should have no distance");
         assert(await getPlayerDistance(player2.address) == 0, "Player2 should have no distance");
         assert(await getPlayerDistance(player3.address) == 0, "Player3 should have no distance");
-        assert(await getRaceId() == 0, "Race id should be 0");
     });
 });
 
 
 // describe("Startup test", function () {
-//     it("Should deploy contract", async function () {
-//         assert(3 == getTotalPlayers(), "Total players should be 3");
-//         assert(await isPlayer(player1.address), "Player1 is player 1");
-//         assert(await isPlayer(player2.address), "Player2 is player 2");
-//         assert(await isPlayer(player3.address), "Player3 is player 3");
-//         assert(await getPlayerName(1) == "Alice", "Player1 is Alice");
-//         assert(await getPlayerName(2) == "Bob", "Player2 is Bob");
-//         assert(await getPlayerName(3) == "Charlie", "Player3 is Charlie");
-//         assert(await getPlayerAddress(1) == player1.address, "Player1 address is correct");
-//         assert(await getPlayerAddress(2) == player2.address, "Player2 address is correct");
-//         assert(await getPlayerAddress(3) == player3.address, "Player3 address is correct");
-//         assert(await getPlayerCoins(1) == 15000, "Player1 has 15000 coins");
-//         assert(await getPlayerCoins(2) == 15000, "Player2 has 15000 coins");
-//         assert(await getPlayerCoins(3) == 15000, "Player3 has 15000 coins");
-//         assert(await getPlayerDistance(1) == 0, "Player1 should have no distance");
-//         assert(await getPlayerDistance(2) == 0, "Player2 should have no distance");
-//         assert(await getPlayerDistance(3) == 0, "Player3 should have no distance");
-//         assert(await Race.getRaceId() == 0, "Race id should be 0");
-
-//     });
-
 //     it("update contract" , async function() {
 //         await Race.connect(owner).startGame();
 //         await Race.connect(owner).updateContract(player1.address, 7000, 5, { gasLimit: 10000000 });
@@ -70,7 +53,6 @@ describe("Startup test", function () {
 //         assert(await getPlayerDistance(2) == 0, "Player2 should not have changed");
 //         assert(await getPlayerCoins(3) == 15000, "Player3 should not have changed");
 //         assert(await getPlayerDistance(3) == 0, "Player3 should not have changed");
-
 //     });
 
 //     it("finish get winner default" , async function() {

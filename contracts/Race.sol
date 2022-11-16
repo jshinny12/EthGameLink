@@ -65,7 +65,7 @@ contract Race is IGame, Ownable {
 
     // view functions regarding play stage
     function isPregame() external view override returns (bool){
-        return gameState != State(0);
+        return gameState == State(0);
     }
 
     function isOngoing() external view override returns (bool){
