@@ -43,25 +43,90 @@ describe("Startup test", function () {
     });
 });
 
-describe("update player tests", function ()  {
-    it("basic update", async function() {
-        it("update contract" , async function() {
-            await race.connect(owner).startGame();
-            await race.connect(owner).updatePlayer(player1.address, 7000, 5, { gasLimit: 10000000 });
-            assert(await getPlayerCoins(player1.address) == 7000, "Player1 has 2000 coins");
-            assert(await getPlayerDistance(player1.address) == 5, "Player1 has 5 distance");
-            assert(await getPlayerCoins(player2.address) == 15000, "Player2 should not have changed");
-            assert(await getPlayerDistance(player2.address) == 0, "Player2 should not have changed");
-            assert(await getPlayerCoins(player3.address) == 15000, "Player3 should not have changed");
-            assert(await getPlayerDistance(player3.address) == 0, "Player3 should not have changed");
-        });
+describe("end/start game tests", function () {
+    it("startGame basic", async function() {
+        await race.connect(raceOwner).startGame();
+        assert(!(await isPregame()), "Not Pregame");
+        assert((await isOngoing()), "Is Ongoing");
+        assert(!(await isFinished()), "Not Finished");
     });
 
-    it("update contract reverted, before started" , async function() {
-        await expect(race.connect(raceOwner).updatePlayer(player1.address, 7000, 5, { gasLimit: 10000000 })).to.be.reverted;
+    it("startGame reverts if not owner", async function() {
+        await expect(race.connect(player1).startGame()).to.be.reverted;
+    }); 
+
+    it("startGame rverts if wrong current state", async function () {
+        race.connect(raceOwner).startGame();
+        await expect(race.connect(raceOwner).startGame()).to.be.reverted;
+        race.connect(raceOwner).endGame();
+        await expect(race.connect(raceOwner).startGame()).to.be.reverted;
+    });
+
+    it("endGame basic", async function () {
+        await race.connect(raceOwner).startGame();
+        await race.connect(raceOwner).endGame();
+        assert(!(await isPregame()), "Not Pregame");
+        assert(!(await isOngoing()), "Is Ongoing");
+        assert((await isFinished()), "Not Finished");
+    });
+
+    it("endGame reverts if not owner", async function() {
+        await race.connect(raceOwner).startGame();
+        await expect(race.connect(player1).endGame()).to.be.reverted;
+    });
+
+    it("endGame reverts if wrong current state", async function() {
+        await expect(race.connect(raceOwner).endGame()).to.be.reverted;
+        race.connect(raceOwner).startGame();
+        race.connect(raceOwner).endGame();
+        await expect(race.connect(raceOwner).startGame()).to.be.reverted;
     });
 });
 
+// describe("updatePlayer tests", function ()  {
+
+//     it("updatePlayer basic" , async function() {
+//         await race.connect(raceOwner).startGame();
+//         await race.connect(raceOwner).updatePlayer(player1.address, 7000, 5, { gasLimit: 10000000 });
+
+//         console.log("ongoing: " + await isOngoing());
+//         console.log("is player: " + await isPlayer(player1.address))
+        
+//         console.log("P1 coins: " + await getPlayerCoins(player1.address));
+//         console.log("P1 dist: " + await getPlayerDistance(player1.address));
+//         assert(await getPlayerCoins(player1.address) == 7000, "Player1 has 7000 coins");
+//         assert(await getPlayerDistance(player1.address) == 5, "Player1 has 5 distance");
+//         assert(await getPlayerCoins(player2.address) == 15000, "Player2 should not have changed");
+//         assert(await getPlayerDistance(player2.address) == 0, "Player2 should not have changed");
+//         assert(await getPlayerCoins(player3.address) == 15000, "Player3 should not have changed");
+//         assert(await getPlayerDistance(player3.address) == 0, "Player3 should not have changed");
+//     });
+
+//     // it("updatePlayer reverted, before started" , async function() {
+//     //     await expect(race.connect(raceOwner).updatePlayer(player1.address, 7000, 5, { gasLimit: 10000000 })).to.be.reverted;
+//     // });
+//     // it("updatePlayer reverted, not owner" , async function() {
+//     //     await race.connect(raceOwner).startGame();
+//     //     await expect(race.connect(player1).updatePlayer(player1.address, 7000, 5, { gasLimit: 10000000 })).to.be.reverted;
+//     // });
+
+//     // it("updatePlayer, coins too many" , async function() {
+//     //     await race.connect(raceOwner).startGame();
+//     //     await expect(race.connect(raceOwner).updatePlayer(player1.address, 17000, 5, { gasLimit: 10000000 })).to.be.reverted;
+//     // });
+
+//     // it("updatePlayer reverted, distance too little" , async function() {
+//     //     await race.connect(raceOwner).startGame();
+//     //     await race.connect(raceOwner).updatePlayer(player1.address, 7000, 6, { gasLimit: 10000000 });
+//     //     console.log("p1 dist: " + await getPlayerDistance(player2.address))
+//     //     await expect(race.connect(raceOwner).updatePlayer(player1.address, 2000, 3, { gasLimit: 10000000 })).to.be.reverted;
+//     // });
+// });
+
+
+
+
+// shinny's old tests
 
 // describe("Startup test", function () {
 //     it("update contract" , async function() {
