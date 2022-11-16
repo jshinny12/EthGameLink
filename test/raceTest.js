@@ -168,7 +168,6 @@ describe("updatePlayer tests", function ()  {
 });
    
 
-
 async function endGame(caller) {
     return await race.connect(caller).endGame()
 }
