@@ -38,6 +38,12 @@ contract Race is IGame, Ownable {
         string memory name3,
         uint256 initCoins
     ) {
+        require(addr1 != address(0) &&
+                addr2 != address(0) &&
+                addr3 != address(0) &&
+                initCoins != 0
+                );     
+
         raceId = _raceId;
         players[addr1] = makePlayer(name1, initCoins);
         players[addr2] = makePlayer(name2, initCoins);
