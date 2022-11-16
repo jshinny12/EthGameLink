@@ -1,5 +1,5 @@
 const { ethers } = require("hardhat");
-const { expect, assert, AssertionError } = require("chai");
+const { expect, assert, AssertionError} = require('chai');
 const web3 = require("web3");
 const { describe } = require("mocha");
 const { solidity } = require("ethereum-waffle");
@@ -42,22 +42,22 @@ describe("Startup test", function () {
         assert(await getPlayerDistance(player2.address) == 0, "Player2 should have no distance");
         assert(await getPlayerDistance(player3.address) == 0, "Player3 should have no distance");
     });
-    // it("Player1 address = 0 reverts", async function() {
-    //     race_fact = await ethers.getContractFactory("Race");
-    //     await expect(race_fact.deploy(0, "0x0000000000000000000000000000000000000000", "Alice", player2.address, "Bob", player3.address, "Charlie", 15000, { gasLimit: 10000000 })).to.be.reverted;
-    // });
-    // it("Player2 address = 0 reverts", async function() {
-    //     race_fact = await ethers.getContractFactory("Race");
-    //     await expect(race_fact.deploy(0, player1.address, "Alice", "0x0000000000000000000000000000000000000000", "Bob", player3.address, "Charlie", 15000, { gasLimit: 10000000 })).to.be.reverted;
-    // });
-    // it("Player3 address = 0 reverts", async function() {
-    //     race_fact = await ethers.getContractFactory("Race");
-    //     await expect(race_fact.deploy(0, player1.address, "Alice", player2.address, "Bob", "0x0000000000000000000000000000000000000000", "Charlie", 15000, { gasLimit: 10000000 })).to.be.reverted;
-    // });
-    // it("initCoins = 0 reverts", async function() {
-    //     race_fact = await ethers.getContractFactory("Race");
-    //     await expect(race_fact.deploy(0, player1.address, "Alice", player2.address, "Bob", player3.address, "Charlie", 0, { gasLimit: 10000000 })).to.be.reverted;
-    // });
+    it("Player1 address = 0 reverts", async function() {
+        race_fact = await ethers.getContractFactory("Race");
+        await expect(race_fact.deploy(0, "0x0000000000000000000000000000000000000000", "Alice", player2.address, "Bob", player3.address, "Charlie", 15000, { gasLimit: 10000000 })).to.be.reverted;
+    });
+    it("Player2 address = 0 reverts", async function() {
+        race_fact = await ethers.getContractFactory("Race");
+        await expect(race_fact.deploy(0, player1.address, "Alice", "0x0000000000000000000000000000000000000000", "Bob", player3.address, "Charlie", 15000, { gasLimit: 10000000 })).to.be.reverted;
+    });
+    it("Player3 address = 0 reverts", async function() {
+        race_fact = await ethers.getContractFactory("Race");
+        await expect(race_fact.deploy(0, player1.address, "Alice", player2.address, "Bob", "0x0000000000000000000000000000000000000000", "Charlie", 15000, { gasLimit: 10000000 })).to.be.reverted;
+    });
+    it("initCoins = 0 reverts", async function() {
+        race_fact = await ethers.getContractFactory("Race");
+        await expect(race_fact.deploy(0, player1.address, "Alice", player2.address, "Bob", player3.address, "Charlie", 0, { gasLimit: 10000000 })).to.be.reverted;
+    });
 });
 
 describe("end/start game tests", function () {
@@ -193,7 +193,6 @@ async function getPlayerDistance(playerId) {
 }
 
 async function getPlayerName(playerId) {
-
     return await race.getPlayerName(playerId)
 }
 
@@ -235,17 +234,15 @@ async function players() {
 }
 
 async function renounceOwnership() {
-    return await race.renounceOwnership()
-
-  return await Race.getPlayerName(playerId);
+    return await race.renounceOwnership();
 }
 
 async function getPlayerAddress(playerId) {
-  return await Race.getPlayerAddress(playerId);
+  return await race.getPlayerAddress(playerId);
 }
 
 async function getPlayerCoins(playerId) {
-  return await Race.getPlayerCoins(playerId);
+  return await race.getPlayerCoins(playerId);
 }
 
 async function isPlayer(address) {
@@ -258,7 +255,7 @@ async function getBalance(address) {
 }
 
 async function getPlayerDistance(playerId) {
-  return await Race.getPlayerDistance(playerId);
+  return await race.getPlayerDistance(playerId);
 }
 
 async function startGame() {
