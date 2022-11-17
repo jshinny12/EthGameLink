@@ -38,11 +38,12 @@ contract Race is IGame, Ownable {
         string memory name3,
         uint256 initCoins
     ) {
-        require(addr1 != address(0) &&
+        require(
+            addr1 != address(0) &&
                 addr2 != address(0) &&
                 addr3 != address(0) &&
                 initCoins != 0
-                );     
+        );
 
         raceId = _raceId;
         players[addr1] = makePlayer(name1, initCoins);
@@ -104,7 +105,7 @@ contract Race is IGame, Ownable {
         emit GameFinished();
     }
 
-    function getTotalPlayers() external view override returns (uint32) {
+    function getTotalPlayers() external pure override returns (uint32) {
         return 3;
     }
 
