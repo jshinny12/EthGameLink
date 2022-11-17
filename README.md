@@ -16,7 +16,6 @@ PUBLIC_KEY = "public key"
 
 ```
 npm install
-npm install @openzeppelin/contracts
 ```
 
 ### How to Run
@@ -38,7 +37,8 @@ npx hardhat test
 1. Choose the correct FROM line in the Docker file
 2. Set the correct path for OPENZEP varaible in zshrc
 
-### Echidna 
+### Echidna
+
 1. npm install locally
 2. Open container in Docker
 3. Configure your .yami file for OPENZEP variable and contract details
@@ -48,7 +48,7 @@ npx hardhat test
 echidna-test *.sol --contract Test --config config.yaml
 ```
 
-5. If you need to check your current solc version, do the following: 
+5. If you need to check your current solc version, do the following:
 
 ```sh
 solc --version
