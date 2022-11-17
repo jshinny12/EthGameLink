@@ -13,11 +13,11 @@ pragma solidity ^0.8.0;
 
 interface IGameMetaData {
     
-/** 
- * 
- * @dev Returns the name of the game
- * 
- */
+    /** 
+     * 
+     * @dev Returns the name of the game
+     * 
+     */
 
     function getGameName() external view returns (string memory);
 }

@@ -19,7 +19,6 @@ interface IGame {
      * @dev Emitted when a game is generated
      * 
      */
-
     event GameCreated();
 
     /**

@@ -25,3 +25,67 @@
 : 1668620691:0;git add .
 : 1668620702:0;git commit -m "Docker setup update"
 : 1668620706:0;git push origin docker
+: 1668641230:0;ls
+: 1668641236:0;cd contracts
+: 1668641287:0;echidna-test Race.sol --contract Test --config config.yaml
+: 1668641445:0;ls
+: 1668641447:0;cd
+: 1668641449:0;cd .
+: 1668641452:0;cd 0
+: 1668641457:0;cd _
+: 1668641471:0;export OPENZEP="/workspaces/node_modules/@openzeppelin/contracts/"
+: 1668641647:0;cd contracts
+: 1668641649:0;cd -
+: 1668641652:0;ls
+: 1668641658:0;cd
+: 1668641659:0;ls
+: 1668641661:0;cd -
+: 1668641663:0;ls
+: 1668641690:0;pwd
+: 1668641706:0;export OPENZEP="/workspaces/Matchbox/node_modules/@openzeppelin/contracts/"
+: 1668641728:0;echidna-test Race.sol --contract Test --config config.yaml --solc-remaps @openzeppelin/contracts/=$OPENZEP
+: 1668641764:0;echidna-test Race.sol --contract Test --config config.yaml
+: 1668641777:0;cd contracts
+: 1668641778:0;echidna-test Race.sol --contract Test --config config.yaml
+: 1668641918:0;echidna-test Race.sol --contract Test --config config.yaml --solc
+: 1668641932:0;echidna-test Race.sol --contract Test --config config.yaml --solc-args @openzeppelin/contracts/=$OPENZEP
+: 1668642405:0;echidna-test Race.sol --contract Test --config config.yaml 
+: 1668642473:0;echidna-test Race.sol --contract Test --config config.yaml --solc
+: 1668642533:0;echidna-test Race.sol --contract Test --config config.yaml
+: 1668642551:0;cd -
+: 1668642552:0;npm install
+: 1668642593:0;npm installls
+: 1668642594:0;ls
+: 1668642598:0;npm install
+: 1668642630:0;which npm
+: 1668642632:0;which
+: 1668642637:0;which npm
+: 1668642699:0;suo apt-get install npm
+: 1668642705:0;sudo apt-get install npm
+: 1668642707:0;npm install
+: 1668642749:0;pip install npm
+: 1668642761:0;npm install
+: 1668642837:0;apt-cache info node
+: 1668642856:0;RUN apt install -y curl
+: 1668642858:0;apt
+: 1668642874:0;apt show node
+: 1668642877:0;apt show npm
+: 1668642909:0;sudo docker run -i -t ubuntu /bin/bash
+: 1668642944:0;apt-get update
+: 1668642956:0;apt-get install curl
+: 1668642996:0;docker container exec -u 0 -it mycontainer bash
+: 1668643001:0;docker
+: 1668643207:0;`echidna-test Race.sol --contract Test --config config.yaml`
+: 1668643210:0;cd contracts
+: 1668643211:0;`echidna-test Race.sol --contract Test --config config.yaml`
+: 1668643223:0;`echidna-test Race.sol --contract Race --config config.yaml`
+: 1668643241:0;echidna-test Race.sol --contract Race --config config.yaml
+: 1668643245:0;echidna-test
+: 1668643313:0;echidna-test Race.sol --contract Race --config config.yaml --solc-args name 0xB1bD86E80f7A6286F575F7702618330b6Cd71510 name 0xB1bD86E80f7A6286F575F7702618330b6Cd71510 name 0xB1bD86E80f7A6286F575F7702618330b6Cd71510
+: 1668643327:0;`echidna-test Race.sol --contract Race --config config.yaml`
+: 1668643347:0;echidna-test Race.sol --contract Race --config config.yaml
+: 1668643414:0;echidna-test Race.sol --contract Race --config config.yaml --solc-args "name"
+: 1668643428:0;echidna-test Race.sol --contract Race --config config.yaml --solc-args
+: 1668643470:0;echidna-test Race.sol --contract Race --config config.yaml --solc-args 
+: 1668643474:0;echidna-test Race.sol --contract Race --config config.yaml 
+: 1668643700:0;echidna-test RaceTest.sol --contract RaceTest --config config.yaml 
