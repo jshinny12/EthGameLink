@@ -39,20 +39,22 @@ npx hardhat test
 2. Set the correct path for OPENZEP varaible in zshrc
 
 ### Echidna 
-1. Configure your .yami file for OPENZEP variable and contract details
-2. Run:
+1. npm install locally
+2. Open container in Docker
+3. Configure your .yami file for OPENZEP variable and contract details
+4. Run:
 
 ```sh
 echidna-test *.sol --contract Test --config config.yaml
 ```
 
-3. If you need to check your current solc version, do the following: 
+5. If you need to check your current solc version, do the following: 
 
 ```sh
 solc --version
 ```
 
-4. In order to change the version to use, do the following:
+6. In order to change the version to use, do the following:
 
 ```sh
 solc-select install [VERSION]
