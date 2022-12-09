@@ -10,7 +10,8 @@ ARG VARIANT="jammy"
 # Default FROM line
 #FROM mcr.microsoft.com/vscode/devcontainers/base:0-${VARIANT}
 # FROM line for local arm64/Apple Silicon
-FROM --platform=linux/amd64 mcr.microsoft.com/vscode/devcontainers/base:0-${VARIANT}
+# FROM --platform=linux/amd64 mcr.microsoft.com/vscode/devcontainers/base:0-${VARIANT}
+FROM mcr.microsoft.com/vscode/devcontainers/base:0-${VARIANT}
 
 RUN chsh -s /usr/bin/zsh vscode;
 # [Optional] Uncomment this section to install additional OS packages.

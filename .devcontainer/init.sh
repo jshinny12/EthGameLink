@@ -35,3 +35,7 @@ ln -rs .devcontainer/zsh_history ~/.zsh_history
 
 rm -f ~/.zshrc && \
 ln -rs .devcontainer/zshrc ~/.zshrc
+
+#add npm
+sudo apt update
+sudo apt install node.js npm

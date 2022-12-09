@@ -1,0 +1,171 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/bin/node', '/usr/bin/npm', 'install', 'solc' ]
+2 info using npm@3.5.2
+3 info using node@v8.10.0
+4 silly loadCurrentTree Starting
+5 silly install loadCurrentTree
+6 silly install readLocalPackageData
+7 silly fetchPackageMetaData solc
+8 silly fetchNamedPackageData solc
+9 silly mapToRegistry name solc
+10 silly mapToRegistry using default registry
+11 silly mapToRegistry registry https://registry.npmjs.org/
+12 silly mapToRegistry uri https://registry.npmjs.org/solc
+13 verbose request uri https://registry.npmjs.org/solc
+14 verbose request no auth needed
+15 info attempt registry request try #1 at 9:26:46 PM
+16 verbose request id a7cf3fc917c50640
+17 verbose etag W/"96178d49eb66ce0bd48952c680c823ad"
+18 verbose lastModified Thu, 08 Sep 2022 18:54:05 GMT
+19 http request GET https://registry.npmjs.org/solc
+20 http 304 https://registry.npmjs.org/solc
+21 verbose headers { date: 'Tue, 22 Nov 2022 21:26:46 GMT',
+21 verbose headers   connection: 'keep-alive',
+21 verbose headers   'cf-ray': '76e4becb6af6c407-EWR',
+21 verbose headers   'cache-control': 'public, max-age=300',
+21 verbose headers   etag: '"96178d49eb66ce0bd48952c680c823ad"',
+21 verbose headers   'last-modified': 'Thu, 08 Sep 2022 18:54:05 GMT',
+21 verbose headers   vary: 'Accept-Encoding',
+21 verbose headers   'cf-cache-status': 'REVALIDATED',
+21 verbose headers   'x-amz-replication-status': 'COMPLETED',
+21 verbose headers   server: 'cloudflare' }
+22 silly get cb [ 304,
+22 silly get   { date: 'Tue, 22 Nov 2022 21:26:46 GMT',
+22 silly get     connection: 'keep-alive',
+22 silly get     'cf-ray': '76e4becb6af6c407-EWR',
+22 silly get     'cache-control': 'public, max-age=300',
+22 silly get     etag: '"96178d49eb66ce0bd48952c680c823ad"',
+22 silly get     'last-modified': 'Thu, 08 Sep 2022 18:54:05 GMT',
+22 silly get     vary: 'Accept-Encoding',
+22 silly get     'cf-cache-status': 'REVALIDATED',
+22 silly get     'x-amz-replication-status': 'COMPLETED',
+22 silly get     server: 'cloudflare' } ]
+23 verbose etag https://registry.npmjs.org/solc from cache
+24 verbose get saving solc to /home/vscode/.npm/registry.npmjs.org/solc/.cache.json
+25 silly install normalizeTree
+26 silly loadCurrentTree Finishing
+27 silly loadIdealTree Starting
+28 silly install loadIdealTree
+29 silly cloneCurrentTree Starting
+30 silly install cloneCurrentTreeToIdealTree
+31 silly cloneCurrentTree Finishing
+32 silly loadShrinkwrap Starting
+33 silly install loadShrinkwrap
+34 silly loadShrinkwrap Finishing
+35 silly loadAllDepsIntoIdealTree Starting
+36 silly install loadAllDepsIntoIdealTree
+37 silly resolveWithNewModule solc@0.8.17 checking installable status
+38 silly cache add args [ 'solc', null ]
+39 verbose cache add spec solc
+40 silly cache add parsed spec Result {
+40 silly cache add   raw: 'solc',
+40 silly cache add   scope: null,
+40 silly cache add   name: 'solc',
+40 silly cache add   rawSpec: '',
+40 silly cache add   spec: 'latest',
+40 silly cache add   type: 'tag' }
+41 silly addNamed solc@latest
+42 verbose addNamed "latest" is being treated as a dist-tag for solc
+43 info addNameTag [ 'solc', 'latest' ]
+44 silly mapToRegistry name solc
+45 silly mapToRegistry using default registry
+46 silly mapToRegistry registry https://registry.npmjs.org/
+47 silly mapToRegistry uri https://registry.npmjs.org/solc
+48 verbose addNameTag registry:https://registry.npmjs.org/solc not in flight; fetching
+49 verbose get https://registry.npmjs.org/solc not expired, no request
+50 silly addNameTag next cb for solc with tag latest
+51 silly addNamed solc@0.8.17
+52 verbose addNamed "0.8.17" is a plain semver version for solc
+53 silly cache afterAdd solc@0.8.17
+54 verbose afterAdd /home/vscode/.npm/solc/0.8.17/package/package.json not in flight; writing
+55 verbose afterAdd /home/vscode/.npm/solc/0.8.17/package/package.json written
+56 silly fetchNamedPackageData commander
+57 silly mapToRegistry name commander
+58 silly mapToRegistry using default registry
+59 silly mapToRegistry registry https://registry.npmjs.org/
+60 silly mapToRegistry uri https://registry.npmjs.org/commander
+61 silly fetchNamedPackageData follow-redirects
+62 silly mapToRegistry name follow-redirects
+63 silly mapToRegistry using default registry
+64 silly mapToRegistry registry https://registry.npmjs.org/
+65 silly mapToRegistry uri https://registry.npmjs.org/follow-redirects
+66 silly fetchNamedPackageData semver
+67 silly mapToRegistry name semver
+68 silly mapToRegistry using default registry
+69 silly mapToRegistry registry https://registry.npmjs.org/
+70 silly mapToRegistry uri https://registry.npmjs.org/semver
+71 verbose request uri https://registry.npmjs.org/commander
+72 verbose request no auth needed
+73 info attempt registry request try #1 at 9:26:47 PM
+74 verbose etag W/"db938874cd0e61ce77bb42f1481b0218"
+75 verbose lastModified Fri, 18 Nov 2022 08:02:53 GMT
+76 http request GET https://registry.npmjs.org/commander
+77 verbose request uri https://registry.npmjs.org/follow-redirects
+78 verbose request no auth needed
+79 info attempt registry request try #1 at 9:26:47 PM
+80 verbose etag W/"ae7dc9b3e629a4efc33215c841ee05da"
+81 verbose lastModified Tue, 13 Sep 2022 15:04:20 GMT
+82 http request GET https://registry.npmjs.org/follow-redirects
+83 verbose request uri https://registry.npmjs.org/semver
+84 verbose request no auth needed
+85 info attempt registry request try #1 at 9:26:47 PM
+86 verbose etag W/"e0453286a9d2afac5d127986a3a61adc"
+87 verbose lastModified Tue, 08 Nov 2022 10:38:26 GMT
+88 http request GET https://registry.npmjs.org/semver
+89 http 304 https://registry.npmjs.org/commander
+90 verbose headers { date: 'Tue, 22 Nov 2022 21:26:47 GMT',
+90 verbose headers   connection: 'keep-alive',
+90 verbose headers   'cf-ray': '76e4bed1ba2dc407-EWR',
+90 verbose headers   age: '229',
+90 verbose headers   'cache-control': 'public, max-age=300',
+90 verbose headers   etag: '"db938874cd0e61ce77bb42f1481b0218"',
+90 verbose headers   'last-modified': 'Fri, 18 Nov 2022 08:02:53 GMT',
+90 verbose headers   vary: 'Accept-Encoding',
+90 verbose headers   'cf-cache-status': 'HIT',
+90 verbose headers   'x-amz-replication-status': 'PENDING',
+90 verbose headers   server: 'cloudflare' }
+91 silly get cb [ 304,
+91 silly get   { date: 'Tue, 22 Nov 2022 21:26:47 GMT',
+91 silly get     connection: 'keep-alive',
+91 silly get     'cf-ray': '76e4bed1ba2dc407-EWR',
+91 silly get     age: '229',
+91 silly get     'cache-control': 'public, max-age=300',
+91 silly get     etag: '"db938874cd0e61ce77bb42f1481b0218"',
+91 silly get     'last-modified': 'Fri, 18 Nov 2022 08:02:53 GMT',
+91 silly get     vary: 'Accept-Encoding',
+91 silly get     'cf-cache-status': 'HIT',
+91 silly get     'x-amz-replication-status': 'PENDING',
+91 silly get     server: 'cloudflare' } ]
+92 verbose etag https://registry.npmjs.org/commander from cache
+93 verbose get saving commander to /home/vscode/.npm/registry.npmjs.org/commander/.cache.json
+94 verbose stack Error: Missing required argument #1
+94 verbose stack     at andLogAndFinish (/usr/share/npm/lib/fetch-package-metadata.js:31:3)
+94 verbose stack     at fetchPackageMetadata (/usr/share/npm/lib/fetch-package-metadata.js:51:22)
+94 verbose stack     at resolveWithNewModule (/usr/share/npm/lib/install/deps.js:456:12)
+94 verbose stack     at /usr/share/npm/lib/install/deps.js:457:7
+94 verbose stack     at /usr/share/npm/node_modules/iferr/index.js:13:50
+94 verbose stack     at /usr/share/npm/lib/fetch-package-metadata.js:37:12
+94 verbose stack     at addRequestedAndFinish (/usr/share/npm/lib/fetch-package-metadata.js:82:5)
+94 verbose stack     at returnAndAddMetadata (/usr/share/npm/lib/fetch-package-metadata.js:117:7)
+94 verbose stack     at pickVersionFromRegistryDocument (/usr/share/npm/lib/fetch-package-metadata.js:134:20)
+94 verbose stack     at /usr/share/npm/node_modules/iferr/index.js:13:50
+95 verbose cwd /workspaces/Matchbox
+96 error Linux 5.10.124-linuxkit
+97 error argv "/usr/bin/node" "/usr/bin/npm" "install" "solc"
+98 error node v8.10.0
+99 error npm  v3.5.2
+100 error code EMISSINGARG
+101 error typeerror Error: Missing required argument #1
+101 error typeerror     at andLogAndFinish (/usr/share/npm/lib/fetch-package-metadata.js:31:3)
+101 error typeerror     at fetchPackageMetadata (/usr/share/npm/lib/fetch-package-metadata.js:51:22)
+101 error typeerror     at resolveWithNewModule (/usr/share/npm/lib/install/deps.js:456:12)
+101 error typeerror     at /usr/share/npm/lib/install/deps.js:457:7
+101 error typeerror     at /usr/share/npm/node_modules/iferr/index.js:13:50
+101 error typeerror     at /usr/share/npm/lib/fetch-package-metadata.js:37:12
+101 error typeerror     at addRequestedAndFinish (/usr/share/npm/lib/fetch-package-metadata.js:82:5)
+101 error typeerror     at returnAndAddMetadata (/usr/share/npm/lib/fetch-package-metadata.js:117:7)
+101 error typeerror     at pickVersionFromRegistryDocument (/usr/share/npm/lib/fetch-package-metadata.js:134:20)
+101 error typeerror     at /usr/share/npm/node_modules/iferr/index.js:13:50
+102 error typeerror This is an error with npm itself. Please report this error at:
+102 error typeerror     <http://github.com/npm/npm/issues>
+103 verbose exit [ 1, true ]
