@@ -106,9 +106,76 @@ contract MonacoResults is Ownable {
     }
 
     // function for updating game
-    function updateRacePlayer(string memory _raceId, address playerAddress, uint256 coins, uint256 distance) public onlyOwner raceExists(_raceId) {
+    function updateRacePlayer(
+        string memory _raceId, 
+        address playerAddress, 
+        uint256 coins, 
+        uint256 distance ) public onlyOwner raceExists(_raceId) {
         Race updatingRace = races[_raceId];
         updatingRace.updatePlayer(playerAddress, coins, distance);
+    }
+
+
+    function isPregame(string memory _raceId) external view returns (bool) {
+        Race race = races[_raceId];
+        return race.isPregame();
+    }
+
+    function isOngoing(string memory _raceId) external view returns (bool) {
+        Race race = races[_raceId];
+        return race.isOngoing();
+    }
+
+    function isFinished(string memory _raceId) external view returns (bool) {
+        Race race = races[_raceId];
+        return race.isFinished();
+    }
+
+    // functions for game
+    function startGame(string memory _raceId) public onlyOwner {
+        Race race = races[_raceId];
+        return race.startGame();
+    }
+
+    function endGame(string memory _raceId) public onlyOwner {
+        Race race = races[_raceId];
+        return race.endGame();
+    }
+
+
+    function getRace(string memory _raceId) external view returns (Race) {
+        return races[_raceId];
+    }
+
+    function getTotalPlayers(string memory _raceId) external view returns (uint32) {
+        Race race = races[_raceId];
+        return race.getTotalPlayers();
+    }
+
+    function isPlayer(string memory _raceId, address _account) external view returns (bool) {
+        Race race = races[_raceId];
+        return race.isPlayer(_account);
+    }
+
+    function getWinner(string memory _raceId) external view returns (address) {
+        Race race = races[_raceId];
+        return race.getWinner();
+    }
+
+    function getPlayerName(string memory _raceId, address _account) external view returns (string memory) {
+        Race race = races[_raceId];
+        return race.getPlayerName(_account);
+    }
+
+    function getPlayerCoins(string memory _raceId, address _account) external view returns (uint256) {
+        Race race = races[_raceId];
+        return race.getPlayerCoins(_account);
+    }
+
+
+    function getPlayerDistance(string memory _raceId, address _account) external view returns (uint256) {
+        Race race = races[_raceId];
+        return race.getPlayerDistance(_account);
     }
 
 }
