@@ -39,32 +39,6 @@ contract MonacoResults is Ownable {
         _;
     }
 
-    //modifier game has started
-    modifier raceOngoing(string memory _raceId) {
-        require(
-            races[_raceId].isOngoing(),
-            "Race must be ongoing"
-        );
-        _;
-    }
-
-    //modifier game has started
-    modifier raceHasNotStarted(string memory _raceId) {
-        require(
-            races[_raceId].isPregame(),
-            "Race has not started yet"
-        );
-        _;
-    }
-
-    modifier raceHasEnded(string memory _raceId) {
-        require(
-            races[_raceId].isFinished(),
-            "Race has already ended"
-        );
-        _;
-    }
-
     //function for removing games
     function removeRace(string memory _raceId) external onlyOwner raceExists(_raceId) {
         //delete game
@@ -111,8 +85,8 @@ contract MonacoResults is Ownable {
         address playerAddress, 
         uint256 coins, 
         uint256 distance ) public onlyOwner raceExists(_raceId) {
-        Race updatingRace = races[_raceId];
-        updatingRace.updatePlayer(playerAddress, coins, distance);
+        Race race = races[_raceId];
+        race.updatePlayer(playerAddress, coins, distance);
     }
 
 
@@ -140,6 +114,11 @@ contract MonacoResults is Ownable {
     function endGame(string memory _raceId) public onlyOwner {
         Race race = races[_raceId];
         return race.endGame();
+    }
+
+    function getGameOwner(string memory _raceId)  external view returns (address) {
+        Race race = races[_raceId];
+        return race.owner();
     }
 
 
