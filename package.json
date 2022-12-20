@@ -29,6 +29,7 @@
     "dotenv": "^16.0.3",
     "ethereum-waffle": "^3.4.4",
     "harhat": "^1.0.1",
-    "npx": "^10.2.2"
+    "npx": "^10.2.2",
+    "solidity-coverage": "^0.8.2"
   }
 }
