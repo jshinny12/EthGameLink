@@ -32,6 +32,8 @@ ECHIDNA_BIN="echidna-test-${ECHIDNA_VERSION}"
 ECHIDNA_URL="${ECHIDNA_BASE}/v${ECHIDNA_VERSION}/${ECHIDNA_BIN}-Ubuntu-18.04.tar.gz"
 curl -L "$ECHIDNA_URL" | sudo tar -xz -C /usr/bin
 
+# curl -L "https://github.com/crytic/echidna/releases/download/v2.0.3/echidna-test-2.0.3-Ubuntu-18.04.tar.gz" | sudo tar -xz -C /usr/bin
+
 echo "Installing Scribble"
 sudo npm install -g eth-scribble
 

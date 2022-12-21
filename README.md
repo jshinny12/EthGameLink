@@ -60,3 +60,10 @@ solc --version
 solc-select install [VERSION]
 solc-select use [VERSION]
 ```
+
+7. For Mac users, Echidna is already instally in the directory
+8. Run from the contracts directory:
+
+```sh
+sudo ./../echidna/echidna-test/echidna-test RaceTest.sol --contract RaceTest --config config.yaml
+```
