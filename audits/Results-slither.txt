@@ -1,0 +1,40 @@
+Dec 21 log: no bug or vulnerabilities detacted. 
+
+Context._msgData() (../node_modules/@openzeppelin/contracts/utils/Context.sol#21-23) is never used and should be removed
+Counters.current(Counters.Counter) (../node_modules/@openzeppelin/contracts/utils/Counters.sol#22-24) is never used and should be removed
+Counters.decrement(Counters.Counter) (../node_modules/@openzeppelin/contracts/utils/Counters.sol#32-38) is never used and should be removed
+Counters.increment(Counters.Counter) (../node_modules/@openzeppelin/contracts/utils/Counters.sol#26-30) is never used and should be removed
+Counters.reset(Counters.Counter) (../node_modules/@openzeppelin/contracts/utils/Counters.sol#40-42) is never used and should be removed
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#dead-code
+
+Pragma version^0.8.0 (../node_modules/@openzeppelin/contracts/access/Ownable.sol#4) allows old versions
+Pragma version^0.8.0 (../node_modules/@openzeppelin/contracts/utils/Context.sol#4) allows old versions
+Pragma version^0.8.0 (../node_modules/@openzeppelin/contracts/utils/Counters.sol#4) allows old versions
+Pragma version^0.8.0 (IGame.sol#2) allows old versions
+Pragma version^0.8.0 (MonacoResults.sol#2) allows old versions
+Pragma version^0.8.0 (Race.sol#2) allows old versions
+solc-0.8.0 is not recommended for deployment
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#incorrect-versions-of-solidity
+
+Parameter MonacoResults.removeRace(string)._raceId (MonacoResults.sol#43) is not in mixedCase
+Parameter MonacoResults.addRace(string,address,string,address,string,address,string,uint256)._raceId (MonacoResults.sol#54) is not in mixedCase
+Parameter MonacoResults.updateRacePlayer(string,address,uint256,uint256)._raceId (MonacoResults.sol#84) is not in mixedCase
+Parameter MonacoResults.isPregame(string)._raceId (MonacoResults.sol#93) is not in mixedCase
+Parameter MonacoResults.isOngoing(string)._raceId (MonacoResults.sol#98) is not in mixedCase
+Parameter MonacoResults.isFinished(string)._raceId (MonacoResults.sol#103) is not in mixedCase
+Parameter MonacoResults.startGame(string)._raceId (MonacoResults.sol#109) is not in mixedCase
+Parameter MonacoResults.endGame(string)._raceId (MonacoResults.sol#114) is not in mixedCase
+Parameter MonacoResults.getGameOwner(string)._raceId (MonacoResults.sol#119) is not in mixedCase
+Parameter MonacoResults.getRace(string)._raceId (MonacoResults.sol#125) is not in mixedCase
+Parameter MonacoResults.getTotalPlayers(string)._raceId (MonacoResults.sol#129) is not in mixedCase
+Parameter MonacoResults.isPlayer(string,address)._raceId (MonacoResults.sol#134) is not in mixedCase
+Parameter MonacoResults.isPlayer(string,address)._account (MonacoResults.sol#134) is not in mixedCase
+Parameter MonacoResults.getWinner(string)._raceId (MonacoResults.sol#139) is not in mixedCase
+Parameter MonacoResults.getPlayerName(string,address)._raceId (MonacoResults.sol#144) is not in mixedCase
+Parameter MonacoResults.getPlayerName(string,address)._account (MonacoResults.sol#144) is not in mixedCase
+Parameter MonacoResults.getPlayerCoins(string,address)._raceId (MonacoResults.sol#149) is not in mixedCase
+Parameter MonacoResults.getPlayerCoins(string,address)._account (MonacoResults.sol#149) is not in mixedCase
+Parameter MonacoResults.getPlayerDistance(string,address)._raceId (MonacoResults.sol#155) is not in mixedCase
+Parameter MonacoResults.getPlayerDistance(string,address)._account (MonacoResults.sol#155) is not in mixedCase
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#conformance-to-solidity-naming-conventions
+MonacoResults.sol analyzed (6 contracts with 81 detectors), 32 result(s) found

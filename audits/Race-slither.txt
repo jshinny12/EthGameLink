@@ -1,4 +1,4 @@
-Nov 16 log:
+Nov 16 log: no bug or vulnerabilities detacted. 
 
 Context._msgData() (../node_modules/@openzeppelin/contracts/utils/Context.sol#21-23) is never used and should be removed
 Counters.current(Counters.Counter) (../node_modules/@openzeppelin/contracts/utils/Counters.sol#22-24) is never used and should be removed
