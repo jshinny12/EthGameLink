@@ -1,3 +1,5 @@
+
+# Install Base Languages
 echo "Installing solc-select..."
 pip install solc-select || exit 1
 
@@ -11,11 +13,17 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 . "$HOME/.cargo/env"
 rustup default nightly
 
+echo "Installing npm"
+curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
+sudo apt-get install -y nodejs
+
+
+# Install Security Tools
 echo "Installing mythril..."
 pip install mythril
 
-echo "Installing slither.."
-pip3 install slither-analyzer
+echo "Installing slither..."
+pip install slither-analyzer || exit 1
 
 echo "Installing echidna..."
 ECHIDNA_BASE="https://github.com/crytic/echidna/releases/download"
@@ -24,6 +32,11 @@ ECHIDNA_BIN="echidna-test-${ECHIDNA_VERSION}"
 ECHIDNA_URL="${ECHIDNA_BASE}/v${ECHIDNA_VERSION}/${ECHIDNA_BIN}-Ubuntu-18.04.tar.gz"
 curl -L "$ECHIDNA_URL" | sudo tar -xz -C /usr/bin
 
+echo "Installing Scribble"
+sudo npm install -g eth-scribble
+
+
+# Install Terminal Tools
 echo "Installing fzf..."
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/fzf && \
 ~/fzf/install --all || :

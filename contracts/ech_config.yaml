@@ -1,0 +1,13 @@
+cryticArgs: ["--solc-remaps", "@openzeppelin/=/workspaces/Matchbox/node_modules/@openzeppelin/"]
+testMode: "assertion"
+testLimit: 100000
+balanceContract: 100000000000000000000000000
+testMaxGas: 1000000000
+seqLen: 2
+
+
+
+
+
+
+
