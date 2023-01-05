@@ -1,8 +1,10 @@
-# Matchbox
+# EthGameLink
 
 <p align="center">
-Matchbox X FD 
+A Franklin Dao Project 
 </p>
+
+EthGameLink is a collection of solidity interfaces that represent a generalized framework for smart-contract games. Designing a common interface for these games provides a framework for developers and improves security and interoperability. The project includes an interface that matches the design standards and best practices of other popular interfaces, such as IERC20, with potential for inheriting interfaces for more specialized games, such as games with prizes. We also instantiate an existing game, 0xMonaco, that impliments the interface to demonstrate its applicability. 
 
 ### In a .env folder inititalize:
 
