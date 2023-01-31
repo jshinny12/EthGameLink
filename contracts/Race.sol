@@ -113,8 +113,6 @@ contract Race is IGame, Ownable {
         return raceId;
     }
 
-    /// if_succeeds {:msg "Player Coins have Decreased" } old(players[addr].coins) > players[addr].coins;
-    /// if_succeeds {:msg "intentionally failing test" } old(players[addr].coins) < players[addr].coins;
     function updatePlayer(
         address addr,
         uint256 coins,

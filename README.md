@@ -69,3 +69,16 @@ solc-select use [VERSION]
 ```sh
 sudo ./../echidna/echidna-test/echidna-test RaceTest.sol --contract RaceTest --config config.yaml
 ```
+### Slither
+From the contracts folder, run
+
+```
+slither Race.sol --solc-remaps @openzeppelin/=/workspaces/Matchbox/node_modules/@openzeppelin/
+```
+
+### Mythril 
+From the contracts folder, run
+
+```
+myth analyze Race.sol --solc-json config.json
+```
