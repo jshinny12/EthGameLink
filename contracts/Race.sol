@@ -119,7 +119,6 @@ contract Race is IGame, Ownable {
         uint256 distance
     ) public onlyOwner ongoing {
         require(this.isPlayer(addr));
-        assert(false);
 
         Player memory p = players[addr];
 
